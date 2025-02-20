@@ -37,7 +37,6 @@ O sistema contará com um mecanismo de avaliação baseado em comentários e not
 - Definir histórias de usuário e requisitos funcionais
 - Criar backlog (conjunto de histórias de usuário)
 - Desenvolver um site inicial (**Projeto Integrador 1 será apenas o site**)
-- Contatar o departamento de infraestrutura e T.I. (Enviar e-mail para o professor responsável)
 - **Solução fictícia, sem integração com o SGI (sistema do CEUB)**
 
 ## 📅 Próximos Passos
