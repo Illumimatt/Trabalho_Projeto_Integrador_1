@@ -9,25 +9,36 @@ O sistema contará com um mecanismo de avaliação baseado em comentários e not
 ## 🚀 Status do Projeto
 **Fase inicial de planejamento**
 
-### 🔹 Funcionalidades Principais:
+### 🔹 Funcionamento Teórico do Sistema
 - **Sistema de Sugestão, Avaliação e Reclamação**
-  - Divisão por categorias (ex: salas, restaurantes, secretaria, etc.)
-  - Exibição do status das reclamações/sugestões:
-    - **Verde**: Problema resolvido
-    - **Vermelho**: Problema ainda pendente
-  - Classificação dos feedbacks em:
-    - **Comentário**
-    - **Reclamação**
-    - **Sugestão**
-  - Implementação de filtro de palavras inadequadas
+  - Exemplo de locais avaliáveis: restaurantes, salas de aula, bosque, secretaria, etc.
+  - **Sistema de Avaliação**
+    - Comentários e notas
+    - Divisão por categorias (ex: salas, restaurantes, etc.)
+    - Status das reclamações/sugestões:
+      - **Verde**: Problema resolvido
+      - **Vermelho**: Problema pendente
+    - Classificação dos feedbacks em:
+      - **Comentário**
+      - **Reclamação**
+      - **Sugestão**
+    - Implementação de filtro de palavras inadequadas
 
 - **Sistema de Login**
-  - Cadastro e autenticação obrigatoriamente com e-mail institucional do CEUB
   - Opção de enviar comentários anonimamente
+  - Tipos de login:
+    - Estudante
+    - Funcionário
+    - Professor
 
-- **Plataforma**
-  - Definição entre **Aplicativo** ou **Web-App**
-  - Desenvolvimento inicial focado em um **site**
+### 🔹 Tratamento das Reclamações, Sugestões e Comentários
+- Criar um protótipo com o fluxo de informações
+- Desenvolver o wireframe (design enxuto)
+- Definir histórias de usuário e requisitos funcionais
+- Criar backlog (conjunto de histórias de usuário)
+- Desenvolver um site inicial (**Projeto Integrador 1 será apenas o site**)
+- Contatar o departamento de infraestrutura e T.I. (Enviar e-mail para o professor responsável)
+- **Solução fictícia, sem integração com o SGI (sistema do CEUB)**
 
 ## 📅 Próximos Passos
 - Refinamento do escopo e funcionalidades
