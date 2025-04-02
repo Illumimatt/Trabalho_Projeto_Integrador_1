@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Locais</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Supabase JS Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Locais</h1>
+        
+        <form id="formularioCadastro">
+            <input type="text" id="nome" placeholder="Nome do Local" required>
+            
+            <select id="categoria" required>
+                <option value="">Selecione uma Categoria</option>
+                <!-- Categorias serão carregadas via JavaScript -->
+            </select>
+            
+            <button type="submit">Cadastrar Local</button>
+        </form>
+
+        <section class="locais-cadastrados">
+            <h2>Locais Cadastrados</h2>
+            <table id="tabelaLocais">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Categoria</th>
+                    </tr>
+                </thead>
+                <tbody id="locais"></tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Inclusão do script.js -->
+    <script src="/script.js"></script>
+    
+</body>
+</html>
