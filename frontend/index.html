@@ -116,5 +116,27 @@
     <!-- JavaScript -->
     <script src="js/main.js"></script>
     <script src="js/components/chat.js"></script>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
+  const authButtons = document.querySelector('.auth-buttons');
+
+  if (usuario) {
+    // exibe "Olá, Nome" + botão Sair
+    authButtons.innerHTML = `
+      <span class="usuario-logado">Olá, ${usuario.nome}</span>
+      <button id="logout-btn" class="btn-sair">Sair</button>
+    `;
+
+    document
+      .getElementById('logout-btn')
+      .addEventListener('click', () => {
+        localStorage.removeItem('usuario');
+        window.location.href = '/login.html';
+      });
+  }
+  // se não tiver usuário no storage, deixa os botões originais
+});
+</script>
 </body>
 </html>
