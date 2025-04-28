@@ -45,6 +45,54 @@ function verificarSenha(senhaArmazenada, senhaInformada) {
   return hashOriginal === hashVerificar;
 }
 
+app.post("/api/login", async (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+
+  const { email, senha } = req.body;
+
+  if (!email || !senha) {
+    return res.status(400).json({ erro: "Email e senha são obrigatórios" });
+  }
+
+  try {
+    const { data: usuarios, error } = await supabase
+      .from("usuario")
+      .select("*")
+      .eq("email", email);
+
+    if (error) {
+      console.error("Erro ao buscar usuário:", error);
+      return res.status(500).json({ erro: "Erro ao buscar usuário", detalhes: error.message });
+    }
+
+    if (!usuarios || usuarios.length === 0) {
+      return res.status(400).json({ erro: "Email ou senha inválidos" });
+    }
+
+    const usuario = usuarios[0];
+
+    const senhaCorreta = verificarSenha(usuario.senha, senha);
+
+    if (!senhaCorreta) {
+      return res.status(400).json({ erro: "Email ou senha inválidos" });
+    }
+
+    // Não retornar a senha para o frontend
+    delete usuario.senha;
+
+    console.log("Usuário logado:", usuario.id);
+
+    return res.status(200).json({
+      mensagem: "Login realizado com sucesso",
+      usuario: usuario
+    });
+
+  } catch (error) {
+    console.error("Erro interno:", error);
+    return res.status(500).json({ erro: "Erro interno no servidor", detalhes: error.message });
+  }
+});
+
 // Rota para buscar categorias
 app.get("/api/categorias", async (req, res) => {
   try {
