@@ -1,45 +1,38 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Cadastro de Locais</title>
-    <link rel="stylesheet" href="styles.css">
-    <!-- Supabase JS Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
+<meta charset="UTF-8">
+<title>Cadastro de Usuário</title>
+<link rel="stylesheet" href="styles.css">
+<!-- Supabase JS Client -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Cadastro de Locais</h1>
-        
-        <form id="formularioCadastro">
-            <input type="text" id="nome" placeholder="Nome do Local" required>
-            
-            <select id="categoria" required>
-                <option value="">Selecione uma Categoria</option>
-                <!-- Categorias serão carregadas via JavaScript -->
-            </select>
-            
-            <button type="submit">Cadastrar Local</button>
-        </form>
-
-        <section class="locais-cadastrados">
-            <h2>Locais Cadastrados</h2>
-            <table id="tabelaLocais">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Categoria</th>
-                    </tr>
-                </thead>
-                <tbody id="locais"></tbody>
-            </table>
-        </section>
+<div class="container">
+  <h1>Cadastro de Usuário</h1>
+  <form id="formularioCadastro">
+    <div class="input-group">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" placeholder="Digite seu nome completo" required>
     </div>
-
-    <!-- Inclusão do script.js -->
-    <script src="/script.js"></script>
     
+    <div class="input-group">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" placeholder="Digite seu melhor e-mail" required>
+    </div>
+    
+    <div class="input-group">
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" placeholder="Digite uma senha segura" required>
+    </div>
+    
+    <button type="submit">Criar Conta</button>
+  </form>
+  <p class="termos">
+    Ao se cadastrar, você concorda com nossos Termos de Uso e Política de Privacidade.
+  </p>
+</div>
+<!-- Inclusão do script.js -->
+<script src="/script.js"></script>
 </body>
 </html>
