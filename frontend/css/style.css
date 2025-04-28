@@ -1,0 +1,140 @@
+/* style.css - Arquivo CSS básico para testar caminhos */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0e6f5; /* Fundo levemente roxo */
+  }
+  
+  header {
+    background: linear-gradient(to right, #663399, #4B0082);
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo img {
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .menu ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu ul li {
+    margin: 0 15px;
+  }
+  
+  .menu ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .auth-buttons a {
+    margin-left: 15px;
+    padding: 8px 15px;
+    text-decoration: none;
+  }
+  
+  .btn-criar-conta {
+    color: white;
+  }
+  
+  .btn-entrar {
+    background-color: #33194d;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  .features-container {
+    background-color: #f8f0ff;
+    border-radius: 20px;
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 20px;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .feature-card {
+    background: linear-gradient(135deg, #663399, #4B0082);
+    color: white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 30%;
+    position: relative;
+  }
+  
+  .feature-card h2 {
+    margin-top: 0;
+  }
+  
+  .feature-card img {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .action-button {
+    background-color: rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 20px;
+    color: white;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+  
+  .quick-links {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .quick-link {
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: #663399;
+    width: 30%;
+    text-align: center;
+  }
+  
+  .floating-avatar {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+  }
+  
+  .floating-avatar img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  /* Este comentário serve para verificar se o arquivo CSS está sendo carregado */
+  /* Teste de caminho: OK se você visualizar o estilo básico aplicado */

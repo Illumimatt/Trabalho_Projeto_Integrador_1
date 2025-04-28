@@ -1,38 +1,119 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Cadastro de Usuário</title>
-<link rel="stylesheet" href="styles.css">
-<!-- Supabase JS Client -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fala, CEUB! - Um espaço seguro para alunos expressarem suas opiniões</title>
+   
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/components/cards.css">
+    <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/components/avatars.css">
 </head>
 <body>
-<div class="container">
-  <h1>Cadastro de Usuário</h1>
-  <form id="formularioCadastro">
-    <div class="input-group">
-      <label for="nome">Nome completo</label>
-      <input type="text" id="nome" placeholder="Digite seu nome completo" required>
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/images/logo.png" alt="Logo Fala, CEUB!">
+                    <span>Fala, CEUB!</span>
+                </a>
+            </div>
+           
+            <div class="menu">
+                <ul>
+                    <li><a href="pages/avalie.html">Avalie</a></li>
+                    <li><a href="pages/reclame.html">Reclame</a></li>
+                    <li><a href="pages/sugira.html">Sugira</a></li>
+                    <li><a href="pages/para-empresas.html">Para Empresas</a></li>
+                </ul>
+            </div>
+           
+            <div class="auth-buttons">
+                <a href="pages/criar-conta.html" class="btn-criar-conta">criar conta</a>
+                <a href="pages/entrar.html" class="btn-entrar">Entrar</a>
+            </div>
+        </nav>
+    </header>
+   
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Fala, CEUB!</h1>
+                <p>Um espaço seguro para que alunos possam expressar suas <span class="highlight">opiniões!</span></p>
+            </div>
+           
+            <div class="hero-image">
+                <img src="assets/images/avatars/user.png" alt="Avatar de usuário">
+                <div class="chat-bubble">
+                    <div class="dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-container">
+            <div class="features">
+                <div class="feature-card avalie">
+                    <h2>Avalie</h2>
+                    <img src="assets/images/icons/star.svg" alt="Ícone de estrela">
+                    <a href="pages/avaliar.html" class="action-button">
+                        Avaliar
+                        <span class="arrow-icon">›</span>
+                    </a>
+                </div>
+
+                <div class="feature-card reclame">
+                    <h2>Reclame</h2>
+                    <img src="assets/images/icons/bell.svg" alt="Ícone de sino">
+                    <a href="pages/reclamar.html" class="action-button">
+                        Reclamar
+                        <span class="arrow-icon">›</span>
+                    </a>
+                </div>
+
+                <div class="feature-card sugira">
+                    <h2>Sugira</h2>
+                    <img src="assets/images/icons/bulb.svg" alt="Ícone de lâmpada">
+                    <a href="pages/sugerir.html" class="action-button">
+                        Sugerir
+                        <span class="arrow-icon">›</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="quick-links">
+                <a href="pages/melhores-avaliados.html" class="quick-link">Melhores Avaliados</a>
+                <a href="pages/reclamacoes-resolvidas.html" class="quick-link">Reclamações Resolvidas</a>
+                <a href="pages/sugestoes-aplicadas.html" class="quick-link">Sugestões Aplicadas</a>
+            </div>
+        </section>
+    </main>
+   
+    <footer>
+        <!-- Elementos do rodapé aqui -->
+    </footer>
+
+    <!-- Avatar flutuante no canto inferior direito -->
+    <div class="floating-avatar">
+        <img src="assets/images/avatars/support.png" alt="Avatar de ajuda">
+        <div class="chat-bubble">
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
-    
-    <div class="input-group">
-      <label for="email">E-mail</label>
-      <input type="email" id="email" placeholder="Digite seu melhor e-mail" required>
-    </div>
-    
-    <div class="input-group">
-      <label for="senha">Senha</label>
-      <input type="password" id="senha" placeholder="Digite uma senha segura" required>
-    </div>
-    
-    <button type="submit">Criar Conta</button>
-  </form>
-  <p class="termos">
-    Ao se cadastrar, você concorda com nossos Termos de Uso e Política de Privacidade.
-  </p>
-</div>
-<!-- Inclusão do script.js -->
-<script src="/script.js"></script>
+   
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/components/chat.js"></script>
 </body>
 </html>
