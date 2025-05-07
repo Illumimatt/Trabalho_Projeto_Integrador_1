@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Crie Sua Conta - Fala, CEUB!</title>
+  <link rel="stylesheet" href="../css/criarconta.css" />
+</head>
+<body>
+  <header>
+    <nav class="main-nav">
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../assets/images/logo.png" alt="Logo Fala, CEUB!" />
+          <span>Fala, CEUB!</span>
+        </a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="avalie.html">Avalie</a></li>
+          <li><a href="reclame.html">Reclame</a></li>
+          <li><a href="sugira.html">Sugira</a></li>
+          <li><a href="para-empresas.html">Para Empresas</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="lado-esquerdo">
+      <img src="../assets/images/logo.png" alt="Logo Fala, CEUB!" />
+      <h2>Compartilhe, opine<br>e ajude a melhorar!</h2>
+      <img src="../assets/images/telescopio.png" alt="Ilustração" style="max-width: 80%;" />
+    </div>
+
+    <div class="lado-direito">
+      <h1>Crie Sua Conta</h1>
+
+      <form id="formularioCadastro">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="seu@sempreceub"
+          required
+        />
+        <small>E-mail deve ser @sempreceub</small>
+
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required />
+        <small>A senha deve conter pelo menos 1 letra maiúscula e mais de 6 caracteres.</small>
+
+        <label for="confirmarSenha">Confirme Sua Senha</label>
+        <input
+          type="password"
+          id="confirmarSenha"
+          name="confirmarSenha"
+          required
+        />
+        <small>A senha deverá ser igual à anterior.</small>
+
+        <button type="submit">Criar Conta</button>
+      </form>
+
+      <p>Já possui uma conta? <a href="entrar.html">Login</a></p>
+    </div>
+  </div>
+
+  <script src="../js/criarconta.js"></script>
+</body>
+</html>
