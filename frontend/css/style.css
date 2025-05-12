@@ -3,11 +3,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f0e6f5; /* Fundo levemente roxo */
-  }
+    background-image: url('./components/img/BackGround1-home.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
   
   header {
-    background: linear-gradient(to right, #663399, #4B0082);
+    background: rgba(134, 110, 153, 0.07); /* 0.07 = 7% de opacidade */
     color: white;
     padding: 15px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
@@ -42,11 +46,43 @@ body {
     margin: 0 15px;
   }
   
-  .menu ul li a {
-    color: white;
-    text-decoration: none;
+ .menu ul li a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600; /* Semibold */
+  font-size: 22px;
+  color: #FFFF;
+  text-decoration: none;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
   }
+
   
+  /*landing page*/
+  .hero-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 96px;
+    color: #220E30;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  .hero-content p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 48px;
+    color: #FFFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.55);
+  }
+
+  .highlight {
+  background-image: linear-gradient(to right, #F2F2F2, #663B63); /* Gradiente da esquerda para a direita */
+  -webkit-background-clip: text;  /* Aplica o gradiente ao texto (para navegadores Webkit, como o Chrome) */
+  background-clip: text;          /* Aplica o gradiente ao texto */
+  color: transparent;             /* Torna a cor do texto transparente, para que o gradiente seja visível */
+  }
+
+
+
+
   .auth-buttons a {
     margin-left: 15px;
     padding: 8px 15px;
@@ -54,13 +90,22 @@ body {
   }
   
   .btn-criar-conta {
-    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 20px;
+    color: #271037;
+    text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.45);
   }
   
   .btn-entrar {
     background-color: #33194d;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700; /* Bold */
+    font-size: 20px;
     color: white;
     border-radius: 5px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
   }
   
   .features-container {
