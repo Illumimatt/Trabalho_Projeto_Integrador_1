@@ -44,14 +44,27 @@
                 <div id="conteudo-avaliacao">
                     <!-- O título será inserido aqui via JavaScript -->
                 </div>
-                <div class="estrelas">
+                <div class="estrelas-avaliacao">
+                    <span class="estrela" data-value="1">★</span>
+                    <span class="estrela" data-value="2">★</span>
+                    <span class="estrela" data-value="3">★</span>
+                    <span class="estrela" data-value="4">★</span>
+                    <span class="estrela" data-value="5">★</span>
                 </div>
-                <div class="comentario">
-                    <!--comentar anonimamente-->
-                    <!--comenario-->
+
+                <div class="anonimo-switch">
+                    <label>
+                        <input type="checkbox" id="anonimo-checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <span>Avaliar anônimamente</span>
                 </div>
-                <a class="btn">Enviar</a>            
-            </div>
+
+                <div class="comentario-area">
+                    <textarea id="comentario-texto" placeholder="Escreva sua avaliação aqui..."></textarea>
+                </div>
+                <button id="enviar-avaliacao" class="botao-avaliar">Enviar Avaliação</button>           
+</          </div>
         </section>
     </main>
    
