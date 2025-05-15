@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const categoriaId = urlParams.get('categoria');
         const localId = urlParams.get('local');
 
+        console.log('Parâmetros recebidos:', { categoriaId, localId }); // Debug
+
         if (!categoriaId) {
             throw new Error('ID da categoria não foi fornecido na URL');
         }
@@ -21,16 +23,23 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Caso sem local específico
             exibirConteudo(`
                 <h1 class="titulo-avaliacao">${nomeCategoria}</h1>
-                <p class="sem-local">(Avaliação geral da categoria)</p>
             `);
         } else {
-            // Caso com local específico
-            const local = await carregarDados(`/api/locais/${localId}`, 'local');
+            // CASO COM LOCAL ESPECÍFICO - CORREÇÃO PRINCIPAL
+            const local = await carregarDados(`/api/locais/id/${localId}`, 'local');
+                        
             const nomeLocal = extrairNome(local, 'Local');
+            
+            // Verificar se o local pertence à categoria selecionada
+            if (local.categoriaid != categoriaId) {
+                console.warn('O local não pertence à categoria selecionada!', {
+                    localCategoriaId: local.categoriaid,
+                    categoriaSelecionada: categoriaId
+                });
+            }
             
             exibirConteudo(`
                 <h1 class="titulo-avaliacao">${nomeLocal}</h1>
-                <p class="info-categoria">Categoria: ${nomeCategoria}</p>
             `);
         }
 
@@ -40,30 +49,39 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-// Funções auxiliares:
+// Funções auxiliares (mantidas iguais, mas com melhorias):
 
 async function carregarDados(url, tipo) {
     const resposta = await fetch(`http://localhost:3000${url}`);
     
     if (!resposta.ok) {
-        throw new Error(`Erro ao carregar ${tipo}: ${resposta.status} ${resposta.statusText}`);
+        const erroData = await resposta.json().catch(() => ({}));
+        throw new Error(erroData.error || `Erro ao carregar ${tipo}: ${resposta.status}`);
     }
 
     const dados = await resposta.json();
     console.log(`Dados da ${tipo}:`, dados);
     
+    if (!dados) {
+        throw new Error(`${tipo} não encontrado(a)`);
+    }
+    
     return dados;
 }
 
 function extrairNome(dados, tipo) {
-    // Verifica várias possíveis estruturas de dados
-    if (typeof dados === 'object' && dados !== null) {
-        if (dados.nome) return dados.nome;
-        if (dados[0]?.nome) return dados[0].nome;
-        if (dados.descricao) return dados.descricao; // Fallback
+    if (!dados) {
+        throw new Error(`Dados da ${tipo} inválidos`);
     }
     
-    throw new Error(`Não foi possível encontrar o nome da ${tipo} nos dados retornados`);
+    // Verifica várias estruturas possíveis
+    if (typeof dados === 'object') {
+        if (dados.nome) return dados.nome;
+        if (dados[0]?.nome) return dados[0].nome;
+        if (dados.descricao) return dados.descricao;
+    }
+    
+    throw new Error(`Estrutura de dados da ${tipo} não reconhecida`);
 }
 
 function exibirConteudo(html) {

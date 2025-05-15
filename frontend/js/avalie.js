@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             selectLocal.disabled = true;
             selectLocal.innerHTML = '<option value="" selected disabled>Carregando locais...</option>';
             
-            const resposta = await fetch(`/api/locais/${categoriaId}`);
+            const resposta = await fetch(`/api/locais/categoria/${categoriaId}`);
             if (!resposta.ok) throw new Error('Erro ao carregar locais');
             
             const locais = await resposta.json();

@@ -22,7 +22,7 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY
 // ROTAS CRÍTICAS PARA O FUNCIONAMENTO:
 
 // 1. Rota para locais por categoria (MODIFICADA)
-app.get("/api/locais/:categoriaId", async (req, res) => {
+app.get("/api/locais/categoria/:categoriaId", async (req, res) => {
   try {
     const { data, error } = await supabase
       .from("local")
@@ -68,11 +68,12 @@ app.get("/api/categorias/:id", async (req, res) => {
 });
 
 // 3. Rota para local específico (MODIFICADA)
-app.get("/api/locais/:id", async (req, res) => {
+// Rota para local específico - versão corrigida
+app.get("/api/locais/id/:id", async (req, res) => {
   try {
     const { data, error } = await supabase
       .from("local")
-      .select("*, categoria:categoriaid(nome)")
+      .select("*") 
       .eq("id", req.params.id)
       .single();
 
