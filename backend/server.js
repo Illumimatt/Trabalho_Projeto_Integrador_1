@@ -212,19 +212,16 @@ app.post("/api/feedbacks/avaliacao", async (req, res) => {
       return res.status(400).json({ error: "O texto é obrigatório (mín. 5 caracteres)" });
     }
 
-    // Se for anônimo, seta usuarioid como null
-    const usuarioFinalId = anonimo ? null : usuarioid;
-
     // Inserção no Supabase (ambos localid e nota podem ser null)
     const { data, error } = await supabase
       .from("feedback")
       .insert([{
-        usuarioid: anonimo ? null : usuarioid,
+        usuarioid: usuarioid,
         localid: localid || null, // Pode ser null
         texto,
         nota: nota || null, // Pode ser null
         anonimo: anonimo || false,
-        tipo: "Avaliação",
+        tipo: "Comentário",
         status: null,
         servicosid: null
       }]);
