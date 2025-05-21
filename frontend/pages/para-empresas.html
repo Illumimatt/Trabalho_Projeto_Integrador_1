@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Para Empresas - Fala, CEUB!</title>
+  <link rel="stylesheet" href="../css/para-empresas.css" />
+</head>
+<body>
+<header>
+  <nav>
+      <div class="logo">
+          <a href="../index.html">
+              <img src="assets/images/logo.png" alt="Logo Fala, CEUB!">
+              <span>Fala, CEUB!</span>
+          </a>
+      </div>
+     
+      <div class="menu">
+          <ul>
+              <li><a href="avalie.html">Avalie</a></li>
+              <li><a href="reclame.html">Reclame</a></li>
+              <li><a href="sugira.html">Sugira</a></li>
+              <li><a href="para-empresas.html">Para Empresas</a></li>
+          </ul>
+      </div>
+      <div class="auth-buttons">
+                <a href="criar-conta.html" class="btn-criar-conta">criar conta</a>
+                <a href="entrar.html" class="btn-entrar">Entrar</a>
+            </div>
+  </nav>
+</header>
+
+  <main class="empresas-container">
+    <section class="intro-empresas">
+      <h1>Conecte-se com a Comunidade Universitária</h1>
+      <p>O <strong>Fala, CEUB!</strong> é uma ponte entre empresas e alunos. Se você representa uma empresa e deseja entender como melhorar seus serviços ou responder aos feedbacks dos estudantes, esta plataforma é para você.</p>
+    </section>
+
+    <section class="beneficios-empresas">
+      <h2>Vantagens para Empresas</h2>
+      <ul>
+        <li>Acesso a feedbacks diretos e transparentes</li>
+        <li>Visibilidade entre os alunos e o corpo acadêmico</li>
+        <li>Oportunidade de responder publicamente às avaliações</li>
+        <li>Fortalecimento da imagem e reputação da marca</li>
+      </ul>
+    </section>
+
+    <section class="chamada-cadastro">
+      <h2>Quer participar?</h2>
+      <p>Entre em contato com a equipe do <strong>Fala, CEUB!</strong> e saiba como sua empresa pode fazer parte da nossa rede de parcerias.</p>
+      <a href="mailto:contato@falaceub.com" class="btn-contato">Fale Conosco</a>
+    </section>
+  </main>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
+  const authButtons = document.querySelector('.auth-buttons');
+
+  if (usuario) {
+    // exibe "Olá, Nome" + botão Sair
+    authButtons.innerHTML = `
+      <span class="usuario-logado">Olá, ${usuario.nome}</span>
+      <button id="logout-btn" class="btn-sair">Sair</button>
+    `;
+
+    document
+      .getElementById('logout-btn')
+      .addEventListener('click', () => {
+        localStorage.removeItem('usuario');
+        window.location.href = 'pages/entrar.html';
+      });
+  }
+  // se não tiver usuário no storage, deixa os botões originais
+});
+</script>  
+</body>
+</html>
