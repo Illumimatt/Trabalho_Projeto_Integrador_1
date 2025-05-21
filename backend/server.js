@@ -27,12 +27,8 @@ function gerarHashSenha(senha) {
   const hash = crypto.createHmac('sha256', salt)
     .update(senha)
     .digest('hex');
-    
-  // Retornar salt e hash combinados (para podermos verificar depois)
   return `${salt}:${hash}`;
 }
-
-// Função para verificar senha (para quando você implementar login)
 function verificarSenha(senhaArmazenada, senhaInformada) {
   const [salt, hashOriginal] = senhaArmazenada.split(':');
   const hashVerificar = crypto.createHmac('sha256', salt)
@@ -168,6 +164,7 @@ app.post("/api/usuarios", async (req, res) => {
 });
 //NAO MEXER NA LOGICA DE LOGIN.
 //NAO MEXER NA LOGICA DE LOGIN.
+
 // ROTAS CRÍTICAS PARA O FUNCIONAMENTO:
 
 // 1. Rota para locais por categoria (MODIFICADA)
@@ -272,24 +269,71 @@ app.get("/api/locais", async (req, res) => {
     res.status(500).json({ error: "Erro ao buscar locais" });
   }
 });
-// Rota para verificar se um email já está cadastrado
-app.post("/api/usuarios/verificar-email", async (req, res) => {
-  const { email } = req.body;
+// Rota exclusiva para criação de SUGESTÃO NAO APAGAR.
+app.post('/api/sugestoes', async (req, res) => {
+  const { usuarioId, localId, texto, anonimo } = req.body;
+
+  // Validações básicas
+  if (!usuarioId || !texto) {
+    return res.status(400).json({ erro: 'Usuário e texto da sugestão são obrigatórios.' });
+  }
+
   try {
     const { data, error } = await supabase
-      .from("usuario")
-      .select("email")
-      .eq("email", email);
+      .from('feedback')
+      .insert([{
+        usuarioid: usuarioId,
+        tipo: 'Sugestão',       // categoria fixa para esta rota
+        localid: localId || null,
+        texto,
+        anonimo: Boolean(anonimo)
+      }])
+      .select()
+      .single();
 
     if (error) throw error;
 
-    if (data && data.length > 0) {
-      res.json({ emailExiste: true });
-    } else {
-      res.json({ emailExiste: false });
-    }
-  } catch (error) {
-    res.status(500).json({ erro: "Erro ao verificar email", detalhes: error.message });
+    res.status(201).json({ sucesso: true, sugestao: data });
+  } catch (err) {
+    console.error('Erro ao criar sugestão:', err);
+    res.status(500).json({ erro: 'Não foi possível salvar sua sugestão.' });
+  }
+});
+
+//ROTA PARA EXIBIR SUGESTOES, NAO APAGAR!!!!!
+// Rota para buscar apenas os feedbacks do tipo “Sugestão”
+app.get('/api/sugestoes/recentes', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('feedback')
+      .select(`
+        id,
+        texto,
+        anonimo,
+        datacriacao,
+        local,
+        usuario:usuarioid (
+          nome
+        )
+      `)
+      .eq('tipo', 'Sugestão')
+      .order('datacriacao', { ascending: false });
+
+    if (error) throw error;
+
+    const sugestoes = data.map(item => ({
+      id: item.id,
+      texto: item.texto,
+      anonimo: item.anonimo,
+      local: item.local,
+      usuarioNome: item.anonimo ? null : item.usuario.nome,
+      criadoEm: item.datacriacao
+    }));
+
+    res.json(sugestoes);
+  } catch (err) {
+    console.error('Erro ao buscar sugestões recentes:', err);
+    res.status(500).json({ erro: 'Não foi possível carregar as sugestões.' });
   }
 });
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Sugira - Fala, CEUB!</title>
-  <link rel="stylesheet" href="../css/sugerir.css" />
+  <title>Sugestões Recentes - Fala, CEUB!</title>
+  <link rel="stylesheet" href="../css/sugestoes-recentes.css" />
 </head>
 <body>
   <header>
@@ -51,51 +51,25 @@
     });
   </script>
 
-  <main class="sugira-page">
-    <h1>Sugira</h1>
+  <main>
+    <a href="sugira.html">&lt; Voltar</a>
+    <h1>Sugestões Recentes</h1>
 
-    <form id="sugestao-form">
-      <div class="select-group">
-        <div class="select-box">
-          <label for="categoria1">Selecione (Opcional)</label>
-          <select id="categoria1" name="categoria1">
-            <option value="">Selecione</option>
-          </select>
-        </div>
+    <div id="lista-sugestoes"></div>
 
-        <div class="select-box">
-          <label for="categoria2">Selecione (Opcional)</label>
-          <select id="categoria2" name="categoria2">
-            <option value="">Selecione</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="sugestao">✱ Qual a sua Sugestão?</label>
-        <textarea
-          id="sugestao"
-          name="sugestao"
-          rows="6"
-          placeholder="Descreva sua sugestão aqui..."
-          required
-        ></textarea>
-      </div>
-
-      <div class="form-group checkbox">
-        <input type="checkbox" id="anonimo" name="anonimo" />
-        <label for="anonimo">Comentar Anonimamente</label>
-      </div>
-
-      <button type="submit" class="btn-enviar">Enviar</button>
-    </form>
-    <div class="sugestoes-recentes">
-    <a href="sugestoes-recentes.html" class="btn-sugestoes">
-      Ver Sugestões Recentes
-    </a>
+    <template id="template-sugestao">
+  <div class="card">
+    <div class="card-header">
+      <span class="card-usuario"></span>
+    </div>
+    <div class="card-body">
+      <p class="card-text"></p>
+    </div>
   </div>
+</template>
+
   </main>
 
-  <script src="../js/sugira.js"></script>
+  <script src="../js/sugestoes-recentes.js"></script>
 </body>
 </html>
