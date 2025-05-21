@@ -311,7 +311,6 @@ app.get('/api/sugestoes/recentes', async (req, res) => {
         texto,
         anonimo,
         datacriacao,
-        local,
         usuario:usuarioid (
           nome
         )
@@ -325,7 +324,6 @@ app.get('/api/sugestoes/recentes', async (req, res) => {
       id: item.id,
       texto: item.texto,
       anonimo: item.anonimo,
-      local: item.local,
       usuarioNome: item.anonimo ? null : item.usuario.nome,
       criadoEm: item.datacriacao
     }));
