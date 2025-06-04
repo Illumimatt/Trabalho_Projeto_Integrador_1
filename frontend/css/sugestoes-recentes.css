@@ -1,67 +1,169 @@
+/* --- Reset Básico e Estilos do Body --- */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('./components/img/BackGround1-home.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    /* Adicionado para garantir o layout vertical correto */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Cabeçalho e Navegação --- */
+header {
+    background: rgba(33, 26, 39, 0.07);
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.menu ul li {
+    margin: 0 15px;
+}
+
+.menu ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: #FFFF;
+    text-decoration: none;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
+    transition: color 0.3s;
+}
+
+.menu ul li a:hover {
+    color: #e0c8f5;
 }
 
 
+/* --- Conteúdo Principal --- */
 main {
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 0 20px;
+    width: 100%;
+    background-color: #fff;
+    flex-grow: 1;
+    box-sizing: border-box;
+    border-radius: 60px 60px 0 0;
+
+    /* Adicionado para criar o espaço */
+    margin-top: 10vh; /* Experimente valores como 5vh, 10vh, ou um valor fixo como 40px */
 }
 
-main h1 {
-  margin-bottom: 20px;
+.container-sugestoes {
+    max-width: 950px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-a {
-  color: #004080;
-  text-decoration: none;
-  display: inline-block;
-  margin-bottom: 15px;
+.container-sugestoes a {
+    color: #6D28D9;
+    text-decoration: none;
+    display: block;
+    margin-top: 5px;
+    font-weight: 500;
 }
 
-a:hover {
-  text-decoration: underline;
+.container-sugestoes a:hover {
+    text-decoration: underline;
 }
 
-/* 🗂️ Card */
+.container-sugestoes h1 {
+    font-family: 'Syne', sans-serif;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 96px;
+    font-weight: 700;
+    color: #271037;
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#lista-sugestoes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    width: 100%;
+}
+
 .card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  padding: 15px 20px;
-  margin-bottom: 20px;
+    background-color: #F3E5F5;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .card-header {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 8px;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .card-header .card-usuario {
-  font-weight: bold;
-  color: #004080;
+    font-weight: bold;
+    color: #4A148C;
 }
 
 .card-body .card-text {
-  font-size: 1.1rem;
-  color: #333;
-  line-height: 1.5;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
 }
 
-/* Responsivo */
-@media (max-width: 600px) {
-  header nav {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* Responsividade */
+@media (max-width: 768px) {
+    main {
+        padding: 20px 15px;
+    }
 
-  header .menu ul {
-    flex-direction: column;
-    gap: 10px;
-  }
+    .container-sugestoes h1 {
+        font-size: 2.2rem;
+    }
+
+    #lista-sugestoes {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
 }

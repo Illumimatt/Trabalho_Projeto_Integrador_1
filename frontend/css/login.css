@@ -1,0 +1,256 @@
+/* login-style.css - Estilo baseado na imagem fornecida */
+
+/* --- Reset Básico e Estilos do Body --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('./components/img/BackGround1-home.png'); /* Cuidado com o caminho! */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Garante que o fundo cubra toda a tela */
+}
+/* --- Cabeçalho e Navegação (Reutilizados do style.css) --- */
+header {
+    background: rgba(134, 110, 153, 0.07); /* 7% de opacidade */
+    color: white;
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
+}
+
+.logo img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.menu ul li {
+    margin: 0 15px;
+}
+
+.menu ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600; /* Semibold */
+    font-size: 22px;
+    color: #FFFF;
+    text-decoration: none;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
+    transition: color 0.3s;
+}
+
+.menu ul li a:hover {
+    color: #e0c8f5;
+}
+/* --- Layout Principal da Página de Login --- */
+.login-page-container {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 80px);
+    position: relative; /* ESSENCIAL: torna este o "pai" posicional */
+    overflow: hidden;   /* Garante que nada vaze para fora da área principal */
+}
+
+/* 2. Estilizamos a imagem para flutuar */
+.overlapping-image {
+    /* Tira a imagem do fluxo normal da página */
+    position: absolute; 
+
+    /* Define a altura da imagem (ajuste conforme necessário) */
+    height: 600px;
+    width: auto; /* Mantém a proporção */
+
+    /* Posiciona a imagem na base do contêiner */
+    bottom: 0; 
+    
+    /* Centraliza a imagem exatamente na linha que divide os dois painéis */
+    left: 30%; /* Move o canto esquerdo da imagem até 30% da largura do contêiner */
+    transform: translateX(-50%); /* Puxa a imagem 50% de sua própria largura para a esquerda */
+
+    /* Garante que a imagem fique ACIMA dos outros painéis */
+    z-index: 5; 
+}
+
+/* 3. (Opcional) Ajustamos o texto no painel roxo para não ficar atrás da imagem */
+.login-promo-panel .promo-content {
+
+    padding-bottom: 150px; 
+}
+
+
+/* --- Painel da Esquerda (Roxo) --- */
+.login-promo-panel {
+    flex-basis: 50%; /* No código anterior era 30%, ajuste se necessário */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    
+    /* MUDANÇA PRINCIPAL: Alinha o conteúdo no topo */
+    justify-content: flex-start; 
+
+    align-items: center; /* Mantém o conteúdo centralizado horizontalmente */
+    
+    /* ADICIONADO: Espaçamento para o texto não colar no topo */
+    padding-top: 80px; 
+
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 40px;
+    box-sizing: border-box;
+}
+
+.promo-content {
+    text-align: center;
+}
+
+.promo-content h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem; /* 40px */
+    font-weight: 700;
+    max-width: 400px;
+    margin: 0 auto 30px auto;
+    /* A linha "text-align: top;" foi removida pois é inválida */
+}
+
+/* --- Painel da Direita (Branco) --- */
+.login-form-panel {
+    flex-basis: 70%;
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 20px 0 0 20px;
+}
+
+/* --- Estilos do Formulário --- */
+#login-form {
+    width: 100%;
+    max-width: 800px;
+}
+
+#login-form h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem; /* 48px */
+    font-weight: 700;
+    color: #220E30;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+#login-form label {
+    display: block;
+    font-size: 1rem; /* 16px */
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+#login-form input[type="email"],
+#login-form input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    border: 1px solid #DCDCDC;
+    border-radius: 8px;
+    background-color: #FAFAFA;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+
+#login-form input:focus {
+    outline: none;
+    border-color: #9558e0;
+    box-shadow: 0 0 5px rgba(109, 32, 197, 0.2);
+}
+
+.input-hint {
+    font-size: 0.8rem; /* 12.8px */
+    color: #888;
+    margin: 0 0 20px 0;
+}
+
+.password-actions {
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+.forgot-password {
+    font-size: 0.9rem; /* 14.4px */
+    color: #888;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+#login-form button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem; /* 17.6px */
+    font-weight: 700;
+    color: #FFFFFF;
+    background-color: #6D20C5;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#login-form button[type="submit"]:hover {
+    background-color: #5919a3;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 25px;
+    color: #555;
+    font-weight: 500;
+}
+
+.signup-link a {
+    color: #6D20C5;
+    text-decoration: none;
+}
+
+.error-message {
+    color: #D32F2F;
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+    height: 20px;
+}
+

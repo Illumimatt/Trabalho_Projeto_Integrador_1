@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Reclame - Fala, CEUB!</title>
+  <link rel="stylesheet" href="../css/reclamar.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../assets/images/logo.png" alt="Logo Fala, CEUB!" />
+          <span>Fala, CEUB!</span>
+        </a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="avalie.html">Avalie</a></li>
+          <li><a href="reclame.html">Reclame</a></li>
+          <li><a href="sugira.html">Sugira</a></li>
+          <li><a href="para-empresas.html">Para Empresas</a></li>
+        </ul>
+      </div>
+      <div class="auth-buttons">
+        <a href="criar-conta.html" class="btn-criar-conta">criar conta</a>
+        <a href="entrar.html" class="btn-entrar">Entrar</a>
+      </div>
+    </nav>
+  </header>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
+      const authButtons = document.querySelector('.auth-buttons');
+
+      if (!usuario) {
+        window.location.href = 'entrar.html';
+        return;
+      }
+
+      authButtons.innerHTML = `
+        <span class="usuario-logado">Olá, ${usuario.nome}</span>
+        <button id="logout-btn" class="btn-sair">Sair</button>
+      `;
+      document.getElementById('logout-btn').addEventListener('click', () => {
+        localStorage.removeItem('usuario');
+        window.location.href = 'entrar.html';
+      });
+    });
+  </script>
+
+  <main class="reclame-page">
+    <h1>Reclame</h1>
+
+    <form id="reclamacao-form">
+      <div class="select-group">
+        <div class="select-box">
+          <label for="categoria1">Selecione (Opcional)</label>
+          <select id="categoria1" name="categoria1">
+            <option value="">Selecione</option>
+          </select>
+        </div>
+
+        <div class="select-box">
+          <label for="categoria2">Selecione (Opcional)</label>
+          <select id="categoria2" name="categoria2">
+            <option value="">Selecione</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="reclamacao">✱ Qual a sua Reclamação?</label>
+        <textarea
+          id="reclamacao"
+          name="reclamacao"
+          rows="6"
+          placeholder="Descreva sua reclamação aqui..."
+          required
+        ></textarea>
+      </div>
+
+      <div class="form-group checkbox">
+        <input type="checkbox" id="anonimo" name="anonimo" />
+        <label for="anonimo">Comentar Anonimamente</label>
+      </div>
+
+      <button type="submit" class="btn-enviar">Enviar</button>
+    </form>
+    <div class="reclamacoes-recentes">
+      <a href="reclamacoes-recentes.html" class="btn-reclamacoes">
+        Ver Reclamações Recentes
+      </a>
+    </div>
+  </main>
+
+  <script src="../js/reclamar.js"></script>
+</body>
+</html>

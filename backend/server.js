@@ -335,6 +335,38 @@ app.get('/api/sugestoes/recentes', async (req, res) => {
   }
 });
 
+//ROTA PARA ENVIAR RECLAMACAO, NAO APAGAR
+
+app.post('/api/reclamacoes', async (req, res) => {
+  const { usuarioId, localId, texto, anonimo } = req.body;
+
+  // Validações básicas
+  if (!usuarioId || !texto) {
+    return res.status(400).json({ erro: 'Usuário e texto da reclamação são obrigatórios.' });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('feedback')
+      .insert([{
+        usuarioid: usuarioId,
+        tipo: 'Reclamação',      // categoria fixa para esta rota
+        localid: localId || null,
+        texto,
+        anonimo: Boolean(anonimo)
+      }])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    res.status(201).json({ sucesso: true, reclamacao: data });
+  } catch (err) {
+    console.error('Erro ao criar reclamação:', err);
+    res.status(500).json({ erro: 'Não foi possível salvar sua reclamação.' });
+  }
+});
+
 // Rota para enviar feedback (avaliação)
 app.post("/api/feedbacks/avaliacao", async (req, res) => {
   try {

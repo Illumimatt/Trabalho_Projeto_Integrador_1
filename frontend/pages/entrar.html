@@ -4,49 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Entrar - Fala, CEUB!</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@600;700&family=Syne:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/login.css">
 </head>
-<header>
-  <nav>
-      <div class="logo">
-          <a href="../index.html">
-              <img src="assets/images/logo.png" alt="Logo Fala, CEUB!">
-              <span>Fala, CEUB!</span>
-          </a>
-      </div>
-     
-      <div class="menu">
-          <ul>
-              <li><a href="avalie.html">Avalie</a></li>
-              <li><a href="reclame.html">Reclame</a></li>
-              <li><a href="sugira.html">Sugira</a></li>
-              <li><a href="para-empresas.html">Para Empresas</a></li>
-          </ul>
-      </div>
-  </nav>
-</header>
 <body>
-  <h1>Login</h1>
-  <form id="login-form">
-    <label for="email">Email</label><br>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      placeholder="seu@exemplo.com"
-      required
-    ><br><br>
+  <header>
+    <nav>
+        <div class="logo">
+            <a href="../index.html">
+                <img src="../css/components/img/icone-logo.png" alt="Logo Fala, CEUB!">
+                <span>Fala, CEUB!</span>
+            </a>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="avalie.html">Avalie</a></li>
+                <li><a href="reclame.html">Reclame</a></li>
+                <li><a href="sugira.html">Sugira</a></li>
+                <li><a href="para-empresas.html">Para Empresas</a></li>
+            </ul>
+        </div>
+    </nav>
+  </header>
 
-    <label for="senha">Senha</label><br>
-    <input
-      type="password"
-      id="senha"
-      name="senha"
-      required
-    ><br>
+  <main class="login-page-container">
+    <div class="login-promo-panel">
+        <div class="promo-content">
+            <h2>Compartilhe, opine e ajude a melhorar!</h2>
+        </div>
+    </div>
+    <div class="login-form-panel">
+      <form id="login-form">
+        <h1>Login</h1>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <p class="input-hint">E-mail deve ser @sempreceub</p>
 
-    <button type="submit">Entrar</button>
-    <p id="login-erro" style="color: red;"></p>
-  </form>
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required>
+        
+        <div class="password-actions">
+            <a href="#" class="forgot-password">Esqueceu sua senha?</a>
+        </div>
+
+        <button type="submit">Entrar</button>
+        
+        <p id="login-erro" class="error-message"></p>
+
+        <p class="signup-link">
+            Não tem conta? <a href="criar-conta.html"><strong>Cadastre-se</strong></a>
+        </p>
+      </form>
+    </div>
+    <img src="..\css\components\img\telescope-illustration.png" alt="Ilustração de um telescópio" class="overlapping-image">
+  </main>
+  
   <script src="../js/entrar.js"></script>
 </body>
 </html>
