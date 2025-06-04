@@ -367,6 +367,80 @@ app.post('/api/reclamacoes', async (req, res) => {
   }
 });
 
+//rota para exibir reclamacoes
+
+app.get('/api/reclamacoes/pendentes', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('feedback')
+      .select(`
+        id,
+        texto,
+        anonimo,
+        datacriacao,
+        usuario:usuarioid (
+          nome
+        )
+      `)
+      // Filtra por tipo 'Reclamação' E por status 'Resolvido'
+      .eq('tipo', 'Reclamação')
+      .eq('status', 'Pendente') // Novo filtro adicionado
+      .order('datacriacao', { ascending: false });
+
+    if (error) throw error;
+
+    const reclamacoesPendentes = data.map(item => ({
+      id: item.id,
+      texto: item.texto,
+      anonimo: item.anonimo,
+      usuarioNome: item.anonimo ? 'Anônimo' : item.usuario.nome,
+      criadoEm: item.datacriacao
+    }));
+
+    res.json(reclamacoesPendentes);
+  } catch (err) {
+    console.error('Erro ao buscar reclamações resolvidas:', err);
+    res.status(500).json({ erro: 'Não foi possível carregar as reclamações resolvidas.' });
+  }
+});
+
+//Rota para pegar reclamacoes resolvidas apenas
+
+app.get('/api/reclamacoes/resolvidas', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('feedback')
+      .select(`
+        id,
+        texto,
+        anonimo,
+        datacriacao,
+        usuario:usuarioid (
+          nome
+        )
+      `)
+      // Filtra por tipo 'Reclamação' E por status 'Resolvido'
+      .eq('tipo', 'Reclamação')
+      .eq('status', 'Resolvido') // Novo filtro adicionado
+      .order('datacriacao', { ascending: false });
+
+    if (error) throw error;
+
+    const reclamacoesResolvidas = data.map(item => ({
+      id: item.id,
+      texto: item.texto,
+      anonimo: item.anonimo,
+      usuarioNome: item.anonimo ? 'Anônimo' : item.usuario.nome,
+      criadoEm: item.datacriacao
+    }));
+
+    res.json(reclamacoesResolvidas);
+  } catch (err) {
+    console.error('Erro ao buscar reclamações resolvidas:', err);
+    res.status(500).json({ erro: 'Não foi possível carregar as reclamações resolvidas.' });
+  }
+});
+
 // Rota para enviar feedback (avaliação)
 app.post("/api/feedbacks/avaliacao", async (req, res) => {
   try {

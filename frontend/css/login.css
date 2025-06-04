@@ -1,31 +1,31 @@
-/* login-style.css - Estilo baseado na imagem fornecida */
-
-/* --- Reset Básico e Estilos do Body --- */
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: Arial, sans-serif; /* Mantido genérico, mas idealmente seria Montserrat/Poppins */
     margin: 0;
     padding: 0;
-    background-image: url('./components/img/BackGround1-home.png'); /* Cuidado com o caminho! */
+    background-image: url('./components/img/BackGround1-home.png'); /* Ajuste o caminho se necessário */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh; /* Garante que o fundo cubra toda a tela */
+    min-height: 100vh; /* Garante que o body ocupe toda a altura */
+    display: flex; /* Adicionado para o layout de página inteira */
+    flex-direction: column; /* Adicionado para o layout de página inteira */
 }
-/* --- Cabeçalho e Navegação (Reutilizados do style.css) --- */
-header {
-    background: rgba(134, 110, 153, 0.07); /* 7% de opacidade */
+  header {
+    background: rgba(134, 110, 153, 0.07);
     color: white;
-    padding: 15px 0;
+    padding: 30px 0; /* Aumentei o padding para dar mais respiro */
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 100%; /* Garante que o header ocupe toda a largura */
+    box-sizing: border-box;
 }
 
-nav {
+nav.main-nav { /* Usando a classe do seu criarconta.html */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1200px; /* Para centralizar o conteúdo da nav */
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 40px;
 }
 
 .logo {
@@ -37,33 +37,40 @@ nav {
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: white;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 24px;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
 }
 
-.logo img {
+.logo img { /* Estilo para o ícone do logo */
     height: 40px;
     margin-right: 10px;
+}
+
+.logo span { /* Estilo para o texto do logo */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 27px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.menu {
+    flex-grow: 1; /* Permite que o menu ocupe espaço e centralize */
+    display: flex;
+    justify-content: center;
 }
 
 .menu ul {
     display: flex;
     list-style: none;
     padding: 0;
-}
-
-.menu ul li {
-    margin: 0 15px;
+    margin: 0;
+    gap: 45px; /* Espaço entre os itens do menu */
 }
 
 .menu ul li a {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600; /* Semibold */
-    font-size: 22px;
-    color: #FFFF;
+    font-weight: 600;
+    font-size: 20px; /* Ajuste de tamanho */
+    color: #FFFFFF;
     text-decoration: none;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
     transition: color 0.3s;
@@ -76,7 +83,7 @@ nav {
 .login-page-container {
     display: flex;
     width: 100%;
-    height: calc(100vh - 80px);
+    flex-grow: 1; /* Para ocupar o restante da altura da tela */
     position: relative; /* ESSENCIAL: torna este o "pai" posicional */
     overflow: hidden;   /* Garante que nada vaze para fora da área principal */
 }
@@ -151,7 +158,7 @@ nav {
     align-items: center;
     padding: 40px;
     box-sizing: border-box;
-    border-radius: 20px 0 0 20px;
+    border-radius: 60px 0 0 60px;
 }
 
 /* --- Estilos do Formulário --- */

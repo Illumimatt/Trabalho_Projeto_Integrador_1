@@ -12,68 +12,66 @@ body {
     min-height: 100vh;
 }
 
-  
-  header {
+header {
     background: rgba(134, 110, 153, 0.07); /* 0.07 = 7% de opacidade */
     color: white;
     padding: 30px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  }
+}
     
-  nav {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
     padding: 0 40px;
-  }
+}
     
-  .logo {
+.logo {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  
-  .logo a {
+}
+
+.logo a {
     display: flex;
     align-items: center;  /* Alinha verticalmente */
     text-decoration: none;
-  }
+}
 
-  .logo-text {
+.logo-text {
     font-family: 'Poppins', sans-serif;
     font-weight: 700; /* Bold */
     font-size: 27px;  /* Tamanho da imagem que você mostrou */
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  }
+}
 
-  .logo-icon {
+.logo-icon {
     height: 40px; /* Aumente aqui se quiser maior */
     margin-right: 10px;
-  }
+}
 
-  .menu {
+.menu {
     flex: 2;
     display: flex;
     justify-content: center;
-  }
+}
 
-  
-  .menu ul {
+.menu ul {
     display: flex;
     list-style: none; /* opcional: tira os marcadores */
     padding: 0;
     margin: 0;
     display: flex; /* deixa os itens numa linha só */
     gap: 65px; /* espaço entre os itens */
-  }
-  
-  .menu ul li {
+}
+
+.menu ul li {
     margin: 0 15px;
-  }
-  
-  .menu ul li a {
+}
+
+.menu ul li a {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600; /* Semibold */
     font-size: 21px;
@@ -81,8 +79,7 @@ body {
     text-decoration: none;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
     align-items: center;
-    }
-
+}
 
 /* --- Conteúdo Principal --- */
 main {
@@ -91,18 +88,18 @@ main {
     flex-grow: 1;
     box-sizing: border-box;
     border-radius: 60px 60px 0 0;
-
-    /* Adicionado para criar o espaço */
-    margin-top: 10vh; /* Experimente valores como 5vh, 10vh, ou um valor fixo como 40px */
+    margin-top: 10vh;
 }
 
-.container-sugestoes {
+/* Alterado de .container-sugestoes */
+.container-reclamacoes {
     max-width: 950px;
     width: 100%;
     margin: 0 auto;
 }
 
-.container-sugestoes a {
+/* Alterado de .container-sugestoes a */
+.container-reclamacoes a {
     color: #6D28D9;
     text-decoration: none;
     display: block;
@@ -110,11 +107,13 @@ main {
     font-weight: 500;
 }
 
-.container-sugestoes a:hover {
+/* Alterado de .container-sugestoes a:hover */
+.container-reclamacoes a:hover {
     text-decoration: underline;
 }
 
-.container-sugestoes h1 {
+/* Alterado de .container-sugestoes h1 */
+.container-reclamacoes h1 {
     font-family: 'Syne', sans-serif;
     text-align: center;
     white-space: nowrap;
@@ -126,7 +125,8 @@ main {
     line-height: 1;
 }
 
-#lista-sugestoes {
+/* Alterado de #lista-sugestoes */
+#lista-reclamacoes-resolvidas {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
@@ -134,7 +134,7 @@ main {
 }
 
 .card {
-    background-color: #F6EEFF;
+    background-color:#BBEAA5;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     padding: 20px;
@@ -167,11 +167,13 @@ main {
         padding: 20px 15px;
     }
 
-    .container-sugestoes h1 {
+    /* Alterado de .container-sugestoes h1 */
+    .container-reclamacoes h1 {
         font-size: 2.2rem;
     }
 
-    #lista-sugestoes {
+    /* Alterado de #lista-sugestoes */
+    #lista-reclamacoes-resolvidas {
         grid-template-columns: 1fr;
         gap: 20px;
     }

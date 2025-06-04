@@ -1,0 +1,288 @@
+/* --- Reset Básico e Estilos do Body (Reutilizado do login.css) --- */
+body {
+    font-family: Arial, sans-serif; /* Mantido genérico, mas idealmente seria Montserrat/Poppins */
+    margin: 0;
+    padding: 0;
+    background-image: url('./components/img/BackGround1-home.png'); /* Ajuste o caminho se necessário */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Garante que o body ocupe toda a altura */
+    display: flex; /* Adicionado para o layout de página inteira */
+    flex-direction: column; /* Adicionado para o layout de página inteira */
+}
+
+/* --- Cabeçalho e Navegação (Reutilizado do login.css) --- */
+header {
+    background: rgba(134, 110, 153, 0.07);
+    color: white;
+    padding: 30px 0; /* Aumentei o padding para dar mais respiro */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    width: 100%; /* Garante que o header ocupe toda a largura */
+    box-sizing: border-box;
+}
+
+nav.main-nav { /* Usando a classe do seu criarconta.html */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px; /* Para centralizar o conteúdo da nav */
+    margin: 0 auto;
+    padding: 0 40px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo img { /* Estilo para o ícone do logo */
+    height: 40px;
+    margin-right: 10px;
+}
+
+.logo span { /* Estilo para o texto do logo */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 27px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.menu {
+    flex-grow: 1; /* Permite que o menu ocupe espaço e centralize */
+    display: flex;
+    justify-content: center;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 45px; /* Espaço entre os itens do menu */
+}
+
+.menu ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 20px; /* Ajuste de tamanho */
+    color: #FFFFFF;
+    text-decoration: none;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
+    transition: color 0.3s;
+}
+
+.menu ul li a:hover {
+    color: #e0c8f5;
+}
+
+/* --- Layout Principal da Página de Criação de Conta --- */
+.container { /* Adaptado de .login-page-container */
+    display: flex;
+    width: 100%;
+    flex-grow: 1; /* Para ocupar o restante da altura da tela */
+    /* height: calc(100vh - HEADER_HEIGHT); Você precisaria calcular a altura do header ou deixar o flex-grow cuidar disso */
+    position: relative;
+    overflow: hidden; /* Se houver elementos que vazam */
+}
+
+.overlapping-image {
+    /* Tira a imagem do fluxo normal da página */
+    position: absolute; 
+
+    /* Define a altura da imagem (ajuste conforme necessário) */
+    height: 600px;
+    width: auto; /* Mantém a proporção */
+
+    /* Posiciona a imagem na base do contêiner */
+    bottom: 0; 
+    
+    /* Centraliza a imagem exatamente na linha que divide os dois painéis */
+    left: 30%; /* Move o canto esquerdo da imagem até 30% da largura do contêiner */
+    transform: translateX(-50%); /* Puxa a imagem 50% de sua própria largura para a esquerda */
+
+    /* Garante que a imagem fique ACIMA dos outros painéis */
+    z-index: 5; 
+}
+
+/* --- Painel da Esquerda (Promocional) --- */
+.lado-esquerdo {
+    flex-basis: 50%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    
+    /* ALTERAÇÃO AQUI: Alinha o conteúdo ao topo */
+    justify-content: flex-start; 
+    
+    align-items: center; /* Mantém os itens centralizados horizontalmente */
+    
+    /* ALTERAÇÃO AQUI: Ajuste no padding, especialmente o padding-top */
+    padding: 80px 40px 40px 40px; /* Ex: 80px topo, 40px laterais e base */
+    
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Logo dentro do painel esquerdo - ajuste a margem se necessário após as mudanças */
+.lado-esquerdo .logo img {
+    height: 60px;
+    margin-bottom: 30px; /* Aumentei um pouco o espaço abaixo do logo */
+}
+
+.lado-esquerdo h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    max-width: 400px;
+    
+    /* ALTERAÇÃO AQUI: Reduz ou remove a margem superior, ajusta a inferior */
+    margin: 0 auto 30px auto; /* (topo, laterais, base) */
+    
+    line-height: 1.3;
+}
+
+/* A imagem do telescópio - ajuste a margem se necessário */
+.lado-esquerdo img[alt="Ilustração"] {
+    max-width: 80%;
+    height: auto;
+    margin-top: 20px;
+}
+/* --- Painel da Direita (Formulário) --- */
+.lado-direito { /* Adaptado de .login-form-panel */
+    flex-basis: 70%;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column; /* Para alinhar o h1 e o form verticalmente */
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+    border-radius: 60px 0 0 60px; /* Bordas arredondadas à esquerda */
+}
+
+/* --- Estilos do Formulário de Cadastro --- */
+#formularioCadastro { /* Adaptado de #login-form */
+    width: 100%;
+    max-width: 450px; /* Largura máxima para o formulário */
+}
+
+#formularioCadastro h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem; /* Ajuste para "Crie Sua Conta" */
+    font-weight: 700;
+    color: #220E30; /* Roxo escuro do login */
+    text-align: center; /* Centraliza o título do formulário */
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+#formularioCadastro label {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #444; /* Cor um pouco mais escura para labels */
+    margin-bottom: 8px;
+}
+
+#formularioCadastro input[type="text"],
+#formularioCadastro input[type="email"],
+#formularioCadastro input[type="password"] {
+    width: 100%;
+    padding: 12px 15px; /* Padding interno */
+    font-size: 1rem;
+    border: 1px solid #DCDCDC;
+    border-radius: 8px;
+    background-color: #FAFAFA;
+    box-sizing: border-box;
+    margin-bottom: 5px; /* Espaço antes da tag <small> */
+    font-family: 'Montserrat', sans-serif;
+}
+
+#formularioCadastro input:focus {
+    outline: none;
+    border-color: #6D20C5; /* Roxo do botão de login */
+    box-shadow: 0 0 0 2px rgba(109, 32, 197, 0.2);
+}
+
+#formularioCadastro small { /* Estilo para os textos de ajuda */
+    display: block;
+    font-size: 0.75rem;
+    color: #777;
+    margin-bottom: 15px; /* Espaço depois da tag <small> */
+}
+
+#formularioCadastro button[type="submit"] {
+    width: 100%;
+    padding: 14px 15px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    background-color: #6D20C5; /* Roxo do botão de login */
+    border: none;
+    border-radius: 8px; /* Consistente com os inputs */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 10px; /* Espaço acima do botão */
+}
+
+#formularioCadastro button[type="submit"]:hover {
+    background-color: #5919a3; /* Tom mais escuro do roxo */
+}
+
+/* Estilo para o link "Já possui uma conta?" */
+.lado-direito > p {
+    text-align: center;
+    margin-top: 25px;
+    color: #555;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.lado-direito > p a {
+    color: #6D20C5; /* Roxo do botão de login */
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.lado-direito > p a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade (Básica) */
+@media (max-width: 992px) { /* Ponto de quebra para tablet */
+    .container {
+        flex-direction: column;
+        height: auto;
+    }
+    .lado-esquerdo, .lado-direito {
+        flex-basis: auto; /* Remove a base flex */
+        width: 100%;
+    }
+    .lado-direito {
+        border-radius: 0; /* Remove o arredondamento em telas menores */
+        padding: 30px 20px;
+    }
+    .lado-esquerdo img[alt="Ilustração"] {
+        display: none; /* Opcional: esconder a ilustração em telas menores */
+    }
+     nav.main-nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .menu ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+}
