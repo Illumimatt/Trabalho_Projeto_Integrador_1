@@ -261,3 +261,42 @@ nav.main-nav { /* Usando a classe do seu criarconta.html */
     height: 20px;
 }
 
+/* Telas grandes (>= 1366px) - tamanho original */
+.overlapping-image {
+    height: 600px;
+}
+
+/* A partir de 1200px */
+@media (max-width: 1400px) {
+    .overlapping-image {
+        height: 350px;
+    }
+}
+
+/* A partir de 992px (notebooks menores) */
+@media (max-width: 992px) {
+    .overlapping-image {
+        height: 400px;
+    }
+}
+
+/* A partir de 768px (tablets) */
+@media (max-width: 768px) {
+    .overlapping-image {
+        height: 300px;
+    }
+}
+
+/* A partir de 576px (celulares grandes) */
+@media (max-width: 576px) {
+    .overlapping-image {
+        height: 220px;
+    }
+}
+
+/* Telas muito pequenas */
+@media (max-width: 400px) {
+    .overlapping-image {
+        height: 180px;
+    }
+}
