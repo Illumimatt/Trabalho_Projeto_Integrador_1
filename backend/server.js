@@ -405,6 +405,7 @@ app.get('/api/reclamacoes/pendentes', async (req, res) => {
 });
 
 //Rota para pegar reclamacoes resolvidas apenas
+//NAO ALTERAR!
 
 app.get('/api/reclamacoes/resolvidas', async (req, res) => {
   try {
@@ -441,44 +442,8 @@ app.get('/api/reclamacoes/resolvidas', async (req, res) => {
   }
 });
 
-/*
-// Rota para enviar feedback (avaliação)
-app.post("/api/feedbacks/avaliacao", async (req, res) => {
-  try {
-    const { usuarioid, localid, texto, nota, anonimo } = req.body;
 
-
-    // Inserção no Supabase (ambos localid e nota podem ser null)
-    const { data, error } = await supabase
-      .from("feedback")
-      .insert([{
-        usuarioid: usuarioid,
-        localid: localid || null, // Pode ser null
-        texto,
-        nota: nota || null, // Pode ser null
-        anonimo: anonimo || false,
-        tipo: "Comentário",
-        status: null,
-        servicosid: null
-      }]);
-
-    if (error) throw error;
-
-    res.status(201).json({
-      success: true,
-      feedback: data[0]
-    });
-
-  } catch (error) {
-    console.error("Erro ao enviar feedback:", error);
-    res.status(500).json({
-      error: "Erro ao enviar avaliação",
-      details: error.message
-    });
-  }
-});
-*/
-
+//Rota para guardar as avaliações
 app.post('/api/avaliacao', async (req, res) => {
   const { usuarioId, localId, texto, anonimo, nota } = req.body;
 
@@ -510,5 +475,63 @@ app.post('/api/avaliacao', async (req, res) => {
   }
 });
 
+//Rota para pegar os melhores avaliados
+app.get('/api/melhores-avaliados', async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from('feedback')
+      .select(`
+        nota,
+        localid (
+          id,
+          nome,
+          categoriaid (
+            id,
+            nome
+          )
+        )
+      `)
+      .eq('tipo', 'Avaliação')
+      .not('nota', 'is', null);
+
+    if (error) throw error;
+
+    const avaliados = {};
+
+    data.forEach((item) => {
+      const nomeLocal = item.localid?.nome || 'Local desconhecido';
+      const nomeCategoria = item.localid?.categoriaid?.nome || 'Categoria desconhecida';
+
+      // Agrupar por nome do local (ou troque por nomeCategoria se quiser)
+      const nome = nomeLocal;
+
+      if (!avaliados[nome]) {
+        avaliados[nome] = {
+          nome,
+          soma: 0,
+          qtd: 0
+        };
+      }
+
+      avaliados[nome].soma += item.nota;
+      avaliados[nome].qtd += 1;
+    });
+
+    const lista = Object.values(avaliados).map((item) => ({
+      nome: item.nome,
+      nota_media: parseFloat((item.soma / item.qtd).toFixed(2)),
+      qtd_avaliacoes: item.qtd
+    }));
+
+    const top10 = lista
+      .sort((a, b) => b.nota_media - a.nota_media)
+      .slice(0, 10);
+
+    res.json(top10);
+  } catch (err) {
+    console.error('Erro ao buscar melhores avaliados:', err);
+    res.status(500).json({ erro: 'Erro ao buscar dados dos melhores avaliados.' });
+  }
+});
 
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));

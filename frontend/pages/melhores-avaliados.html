@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Reclamações Resolvidas - Fala, CEUB!</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@600;700&family=Syne:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/melhores-avaliados.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../css/components/img/icone-logo.png" alt="Logo Fala, CEUB!" />
+          <span>Fala, CEUB!</span>
+        </a>
+      </div>
+      <div class="menu">
+        <ul>
+          <li><a href="avalie.html">Avalie</a></li>
+          <li><a href="reclame.html">Reclame</a></li>
+          <li><a href="sugira.html">Sugira</a></li>
+          <li><a href="para-empresas.html">Para Empresas</a></li>
+        </ul>
+      </div>
+      <div class="auth-buttons">
+        <a href="criar-conta.html" class="btn-criar-conta">criar conta</a>
+        <a href="entrar.html" class="btn-entrar">Entrar</a>
+      </div>
+    </nav>
+  </header>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
+      const authButtons = document.querySelector('.auth-buttons');
+
+      if (!usuario) {
+        window.location.href = 'entrar.html';
+        return;
+      }
+
+      authButtons.innerHTML = `
+        <span class="usuario-logado">Olá, ${usuario.nome}</span>
+        <button id="logout-btn" class="btn-sair">Sair</button>
+      `;
+      document.getElementById('logout-btn').addEventListener('click', () => {
+        localStorage.removeItem('usuario');
+        window.location.href = 'entrar.html';
+      });
+    });
+  </script>
+
+  <main>
+    <div class="container-avaliacoes">
+      <a href="reclame.html">&lt; Voltar</a>
+      <h1>Melhores Avaliados</h1>
+      <div id="lista-melhores-avaliados"></div>
+    </div>
+    <!-- melhores-avaliados.html -->
+
+<!-- Podium de 3 primeiros -->
+<div id="top-1">
+  <span class="nome-local"></span>
+  <span class="nota"></span>
+  <span class="avaliacoes"></span>
+</div>
+<div id="top-2">...</div>
+<div id="top-3">...</div>
+
+<!-- Tabela das posições 4 a 10 -->
+<table id="tabela-avaliados">
+  <thead>
+    <tr>
+      <th>Colocação</th>
+      <th>Nome</th>
+      <th>Nota</th>
+      <th>Avaliações</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+  </main>
+
+  <script src="../js/melhores-avaliados.js"></script>
+</body>
+</html>
