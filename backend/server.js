@@ -480,7 +480,7 @@ app.post("/api/feedbacks/avaliacao", async (req, res) => {
 */
 
 app.post('/api/avaliacao', async (req, res) => {
-  const { usuarioId, localId, texto, anonimo } = req.body;
+  const { usuarioId, localId, texto, anonimo, nota } = req.body;
 
   // Validações básicas
   if (!usuarioId || !texto) {
@@ -495,7 +495,8 @@ app.post('/api/avaliacao', async (req, res) => {
         tipo: 'Avaliação',      // categoria fixa para esta rota
         localid: localId || null,
         texto,
-        anonimo: Boolean(anonimo)
+        anonimo: Boolean(anonimo),
+        nota: nota || null
       }])
       .select()
       .single();

@@ -1,6 +1,7 @@
 const selectCategoria = document.getElementById('categoria1');
 const selectLocal     = document.getElementById('categoria2');
-const form            = document.getElementById('avalie-form'); 
+const form            = document.getElementById('avalie-form');
+
 
 async function loadCategorias() {
   try {
@@ -46,11 +47,16 @@ form.addEventListener('submit', async e => {
   const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
   if (!usuario) return window.location.href = 'entrar.html';
 
+  // Captura a estrela selecionada
+  const notaSelecionada = document.querySelector('input[name="avaliacao"]:checked');
+  const nota = notaSelecionada ? parseInt(notaSelecionada.value) : null;
+
   const payload = {
     usuarioId: usuario.id,
     localId: selectLocal.value || null,
     texto: document.getElementById('avaliacao').value.trim(),
-    anonimo: document.getElementById('anonimo').checked
+    anonimo: document.getElementById('anonimo').checked,
+    nota
   };
 
   const resp = await fetch('/api/avaliacao', {
@@ -62,6 +68,7 @@ form.addEventListener('submit', async e => {
   if (resp.ok) {
     alert('Avaliação enviada com sucesso!');
     form.reset();
+    document.querySelectorAll('input[name="avaliacao"]').forEach(e => e.checked = false);
   } else {
     const err = await resp.json();
     alert(err.erro || 'Falha ao enviar avaliação.');
