@@ -1,0 +1,280 @@
+.estrelas-avaliacao {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.estrelas-avaliacao input {
+    display: none;
+}
+
+.estrelas-avaliacao label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.estrelas-avaliacao input:checked ~ label,
+.estrelas-avaliacao input:checked ~ label ~ label,
+.estrelas-avaliacao label:hover,
+.estrelas-avaliacao label:hover ~ label {
+    color: #ffc107;
+}
+/* --- Reset Básico e Estilos do Body --- */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('./components/img/BackGround1-home.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Cabeçalho e Navegação (Estilos Gerais) --- */
+header {
+    background: rgba(134, 110, 153, 0.07);
+    color: white;
+    padding: 30px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+    
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    padding: 0 40px;
+}
+    
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 27px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.logo-icon {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.menu {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.menu ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 65px;
+}
+
+.menu ul li a {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 21px;
+    color: #FFFF;
+    text-decoration: none;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
+}
+
+/* --- Layout da Página Principal --- */
+main {
+    width: 100%;
+    background-color: #fff;
+    flex-grow: 1;
+    box-sizing: border-box;
+    border-radius: 60px 60px 0 0;
+    margin-top: 10vh;
+}
+
+/* Alterado de .sugira-page */
+.avalie-page {
+    width: 100%;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+/* Alterado de .sugira-page h1 */
+.avalie-page h1 {
+    font-family: 'Syne', sans-serif;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #271037;
+    margin-bottom: 50px;
+}
+
+/* --- Estilos do Formulário --- */
+/* Alterado de #sugestao-form */
+#reclamacao-form {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.select-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.select-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.select-box label {
+    order: 2;
+    color: #8A8A9E;
+    font-size: 0.8rem;
+}
+
+.select-box select {
+    order: 1;
+    width: 100%;
+    padding: 18px 25px;
+    border: 1px solid #C9C5E0;
+    border-radius: 12px;
+    background-color: #F5F4F9;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%236D28D9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6l4 4 4-4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1.2rem center;
+    background-size: 1em;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.form-group > label {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    color: #555;
+    font-weight: 500;
+    font-size: 1rem;
+    pointer-events: none;
+}
+
+.form-group .asterisk {
+    color: #DC2430;
+    margin-right: 5px;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 20px 25px;
+    padding-top: 50px;
+    border: 1px solid #C9C5E0;
+    border-radius: 15px;
+    background-color: #F5F4F9;
+    font-size: 1rem;
+    color: #333;
+    resize: vertical;
+    min-height: 180px;
+    box-sizing: border-box;
+}
+
+.form-group.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-group.checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #6D28D9;
+}
+
+.form-group.checkbox label {
+    color: #8A8A9E;
+    font-weight: 500;
+}
+
+.btn-enviar {
+    background-color: #8A8A9E;
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.btn-enviar:hover {
+    background-color: #6D28D9;
+}
+
+/* --- Link para Reclamações Recentes --- */
+/* Alterado de .sugestoes-recentes */
+.reclamacoes-recentes {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* Alterado de .btn-sugestoes */
+.btn-reclamacoes {
+    color: #6D28D9;
+    text-decoration: none;
+    font-weight: 600;
+    padding-right: 200px;
+}
+
+.btn-reclamacoes:hover {
+    text-decoration: underline;
+}
+
+.btn-reclamacoes-resolvidas {
+    color: #6D28D9;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.btn-reclamacoes-resolvidas:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .select-group {
+        grid-template-columns: 1fr;
+    }
+
+    /* Alterado de .sugira-page h1 */
+    .reclame-page h1 {
+        font-size: 2.5rem;
+    }
+}

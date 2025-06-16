@@ -441,15 +441,12 @@ app.get('/api/reclamacoes/resolvidas', async (req, res) => {
   }
 });
 
+/*
 // Rota para enviar feedback (avaliação)
 app.post("/api/feedbacks/avaliacao", async (req, res) => {
   try {
     const { usuarioid, localid, texto, nota, anonimo } = req.body;
 
-    // Validações flexíveis:
-    if (!texto || texto.length < 5) {
-      return res.status(400).json({ error: "O texto é obrigatório (mín. 5 caracteres)" });
-    }
 
     // Inserção no Supabase (ambos localid e nota podem ser null)
     const { data, error } = await supabase
@@ -480,5 +477,37 @@ app.post("/api/feedbacks/avaliacao", async (req, res) => {
     });
   }
 });
+*/
+
+app.post('/api/avaliacao', async (req, res) => {
+  const { usuarioId, localId, texto, anonimo } = req.body;
+
+  // Validações básicas
+  if (!usuarioId || !texto) {
+    return res.status(400).json({ erro: 'Usuário e texto da avaliação são obrigatórios.' });
+  }
+
+  try {
+    const { data, error } = await supabase
+      .from('feedback')
+      .insert([{
+        usuarioid: usuarioId,
+        tipo: 'Avaliação',      // categoria fixa para esta rota
+        localid: localId || null,
+        texto,
+        anonimo: Boolean(anonimo)
+      }])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    res.status(201).json({ sucesso: true, avaliacao: data });
+  } catch (err) {
+    console.error('Erro ao criar avaliação:', err);
+    res.status(500).json({ erro: 'Não foi possível salvar sua avaliação.' });
+  }
+});
+
 
 app.listen(PORT, () => console.log(`Servidor rodando em http://localhost:${PORT}`));
