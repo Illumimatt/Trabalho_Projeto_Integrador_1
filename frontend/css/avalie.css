@@ -1,28 +1,3 @@
-.estrelas-avaliacao {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.estrelas-avaliacao input {
-    display: none;
-}
-
-.estrelas-avaliacao label {
-    font-size: 2rem;
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.2s;
-}
-
-.estrelas-avaliacao input:checked ~ label,
-.estrelas-avaliacao input:checked ~ label ~ label,
-.estrelas-avaliacao label:hover,
-.estrelas-avaliacao label:hover ~ label {
-    color: #ffc107;
-}
-/* --- Reset Básico e Estilos do Body --- */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -36,64 +11,76 @@ body {
     min-height: 100vh;
 }
 
-/* --- Cabeçalho e Navegação (Estilos Gerais) --- */
-header {
-    background: rgba(134, 110, 153, 0.07);
+  
+  header {
+    background: rgba(134, 110, 153, 0.07); /* 0.07 = 7% de opacidade */
     color: white;
     padding: 30px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
+  }
     
-nav {
+  nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
     padding: 0 40px;
-}
+  }
     
-.logo a {
+  .logo {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .logo a {
+    display: flex;
+    align-items: center;  /* Alinha verticalmente */
     text-decoration: none;
-}
+  }
 
-.logo-text {
+  .logo-text {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 27px;
+    font-weight: 700; /* Bold */
+    font-size: 27px;  /* Tamanho da imagem que você mostrou */
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-}
+  }
 
-.logo-icon {
-    height: 40px;
+  .logo-icon {
+    height: 40px; /* Aumente aqui se quiser maior */
     margin-right: 10px;
-}
+  }
 
-.menu {
+  .menu {
     flex: 2;
     display: flex;
     justify-content: center;
-}
+  }
 
-.menu ul {
+  
+  .menu ul {
     display: flex;
-    list-style: none;
+    list-style: none; /* opcional: tira os marcadores */
     padding: 0;
     margin: 0;
-    gap: 65px;
-}
-
-.menu ul li a {
+    display: flex; /* deixa os itens numa linha só */
+    gap: 65px; /* espaço entre os itens */
+  }
+  
+  .menu ul li {
+    margin: 0 15px;
+  }
+  
+  .menu ul li a {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    font-weight: 600; /* Semibold */
     font-size: 21px;
     color: #FFFF;
     text-decoration: none;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
-}
-
+    align-items: center;
+    }
 /* --- Layout da Página Principal --- */
 main {
     width: 100%;
@@ -104,26 +91,23 @@ main {
     margin-top: 10vh;
 }
 
-/* Alterado de .sugira-page */
 .avalie-page {
     width: 100%;
     padding: 40px 20px;
     box-sizing: border-box;
 }
 
-/* Alterado de .sugira-page h1 */
 .avalie-page h1 {
     font-family: 'Syne', sans-serif;
     text-align: center;
     font-size: 4rem;
     font-weight: 700;
     color: #271037;
-    margin-bottom: 50px;
+    margin-bottom: 30px; /* Reduzi a margem para aproximar do formulário */
 }
 
-/* --- Estilos do Formulário --- */
-/* Alterado de #sugestao-form */
-#reclamacao-form {
+/* --- Estilos do Formulário de Avaliação --- */
+#avalie-form {
     width: 100%;
     max-width: 800px;
     margin: 0 auto;
@@ -168,19 +152,51 @@ main {
     background-size: 1em;
 }
 
+/* --- NOVO: Estilos para a Avaliação por Estrelas --- */
+.estrelas-avaliacao {
+    display: flex;
+    flex-direction: row-reverse; /* Inverte a ordem para o truque de CSS funcionar */
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 30px;
+}
+
+/* Esconde os botões de rádio originais */
+.estrelas-avaliacao input[type="radio"] {
+    display: none;
+}
+
+/* Estiliza as labels (as estrelas visíveis) */
+.estrelas-avaliacao label {
+    font-size: 3rem; /* Tamanho das estrelas */
+    color: #d1d1d1; /* Cor da estrela apagada */
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+/* Quando passa o mouse por cima de uma estrela, ela e as anteriores (à direita, por causa do reverse) acendem */
+.estrelas-avaliacao label:hover,
+.estrelas-avaliacao label:hover ~ label {
+    color: #FFD700; /* Cor da estrela com hover */
+}
+
+/* Quando um rádio é selecionado, a sua label e as anteriores acendem permanentemente */
+.estrelas-avaliacao input[type="radio"]:checked ~ label {
+    color: #FFC107; /* Cor da estrela selecionada (um pouco mais forte) */
+}
+
+
+/* --- Estilos do Campo de Texto (Textarea) --- */
 .form-group {
-    position: relative;
     margin-bottom: 25px;
 }
 
+/* Removido o posicionamento absoluto da label */
 .form-group > label {
-    position: absolute;
-    top: 20px;
-    left: 25px;
+    display: block;
+    margin-bottom: 8px;
     color: #555;
     font-weight: 500;
-    font-size: 1rem;
-    pointer-events: none;
 }
 
 .form-group .asterisk {
@@ -191,34 +207,25 @@ main {
 .form-group textarea {
     width: 100%;
     padding: 20px 25px;
-    padding-top: 50px;
+    /* padding-top não precisa mais ser tão grande */
     border: 1px solid #C9C5E0;
     border-radius: 15px;
     background-color: #F5F4F9;
     font-size: 1rem;
     color: #333;
     resize: vertical;
-    min-height: 180px;
+    min-height: 150px; /* Reduzi um pouco a altura mínima */
     box-sizing: border-box;
 }
 
+/* --- Checkbox de Anonimato --- */
 .form-group.checkbox {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.form-group.checkbox input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: #6D28D9;
-}
-
-.form-group.checkbox label {
-    color: #8A8A9E;
-    font-weight: 500;
-}
-
+/* ... (outros estilos de checkbox e botão que você já tem) ... */
 .btn-enviar {
     background-color: #8A8A9E;
     color: white;
@@ -238,32 +245,21 @@ main {
     background-color: #6D28D9;
 }
 
-/* --- Link para Reclamações Recentes --- */
-/* Alterado de .sugestoes-recentes */
-.reclamacoes-recentes {
+
+/* --- Link para Melhores Avaliados --- */
+/* As classes foram adaptadas para o novo contexto */
+.avaliacoes-link-container { /* Nome genérico para o container */
     text-align: center;
     margin-top: 40px;
 }
 
-/* Alterado de .btn-sugestoes */
-.btn-reclamacoes {
-    color: #6D28D9;
-    text-decoration: none;
-    font-weight: 600;
-    padding-right: 200px;
-}
-
-.btn-reclamacoes:hover {
-    text-decoration: underline;
-}
-
-.btn-reclamacoes-resolvidas {
+.btn-melhores-avaliados {
     color: #6D28D9;
     text-decoration: none;
     font-weight: 600;
 }
 
-.btn-reclamacoes-resolvidas:hover {
+.btn-melhores-avaliados:hover {
     text-decoration: underline;
 }
 
@@ -273,8 +269,7 @@ main {
         grid-template-columns: 1fr;
     }
 
-    /* Alterado de .sugira-page h1 */
-    .reclame-page h1 {
+    .avalie-page h1 {
         font-size: 2.5rem;
     }
 }

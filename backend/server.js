@@ -476,61 +476,23 @@ app.post('/api/avaliacao', async (req, res) => {
 });
 
 //Rota para pegar os melhores avaliados
-app.get('/api/melhores-avaliados', async (req, res) => {
+app.get('/api/ranking/melhores-avaliados', async (req, res) => {
   try {
+    // Chama a função 'get_melhores_avaliados' que criamos no banco de dados
     const { data, error } = await supabase
-      .from('feedback')
-      .select(`
-        nota,
-        localid (
-          id,
-          nome,
-          categoriaid (
-            id,
-            nome
-          )
-        )
-      `)
-      .eq('tipo', 'Avaliação')
-      .not('nota', 'is', null);
+      .rpc('get_melhores_avaliados');
 
-    if (error) throw error;
+    if (error) {
+      // Se houver um erro na execução da função do banco
+      throw error;
+    }
 
-    const avaliados = {};
+    // A 'data' já vem no formato que precisamos: um array de locais classificados
+    res.json(data);
 
-    data.forEach((item) => {
-      const nomeLocal = item.localid?.nome || 'Local desconhecido';
-      const nomeCategoria = item.localid?.categoriaid?.nome || 'Categoria desconhecida';
-
-      // Agrupar por nome do local (ou troque por nomeCategoria se quiser)
-      const nome = nomeLocal;
-
-      if (!avaliados[nome]) {
-        avaliados[nome] = {
-          nome,
-          soma: 0,
-          qtd: 0
-        };
-      }
-
-      avaliados[nome].soma += item.nota;
-      avaliados[nome].qtd += 1;
-    });
-
-    const lista = Object.values(avaliados).map((item) => ({
-      nome: item.nome,
-      nota_media: parseFloat((item.soma / item.qtd).toFixed(2)),
-      qtd_avaliacoes: item.qtd
-    }));
-
-    const top10 = lista
-      .sort((a, b) => b.nota_media - a.nota_media)
-      .slice(0, 10);
-
-    res.json(top10);
   } catch (err) {
-    console.error('Erro ao buscar melhores avaliados:', err);
-    res.status(500).json({ erro: 'Erro ao buscar dados dos melhores avaliados.' });
+    console.error('Erro ao buscar o ranking de melhores avaliados:', err);
+    res.status(500).json({ erro: 'Não foi possível carregar o ranking.' });
   }
 });
 

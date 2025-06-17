@@ -88,93 +88,212 @@ main {
     flex-grow: 1;
     box-sizing: border-box;
     border-radius: 60px 60px 0 0;
-    margin-top: 10vh;
+    margin-top: 5vh; /* Espaço entre o header e o conteúdo branco */
 }
 
-/* Alterado de .container-sugestoes */
-.container-avaliacoes {
-    max-width: 950px;
-    width: 100%;
+.ranking-container {
+    max-width: 1100px; /* Um pouco mais largo para acomodar o pódio/tabela */
+    width: 90%;
     margin: 0 auto;
+    padding: 40px 20px;
 }
 
-/* Alterado de .container-sugestoes a */
-.container-avaliacoes a {
-    color: #6D28D9;
-    text-decoration: none;
-    display: block;
-    margin-top: 5px;
-    font-weight: 500;
-}
-
-/* Alterado de .container-sugestoes a:hover */
-.container-avaliacoes a:hover {
-    text-decoration: underline;
-}
-
-/* Alterado de .container-sugestoes h1 */
-.container-avaliacoes h1 {
-    font-family: 'Syne', sans-serif;
+.ranking-container h1 {
+    font-family: 'Poppins', sans-serif;
     text-align: center;
-    white-space: nowrap;
-    font-size: 76px;
+    font-size: 3.5rem; /* 56px */
     font-weight: 700;
     color: #271037;
-    margin-bottom: 30px;
-    width: 100%;
-    line-height: 1;
+    margin-bottom: 50px;
 }
 
-/* Alterado de #lista-sugestoes */
-#lista-melhores-avaliados {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    width: 100%;
+/* --- Seção do Pódio (Top 3) --- */
+.podium {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; 
+    gap: 15px; 
+    margin-bottom: 60px;
+    padding-top: 40px;
+    /* A linha 'flex-wrap: wrap;' foi removida */
 }
 
-.card {
-    background-color:#BBEAA5;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+.podium-card {
+    background: linear-gradient(145deg, #4A148C, #6D28D9);
+    color: white;
+    border-radius: 20px;
     padding: 20px;
+    text-align: center;
+    width: 28%;
+    min-width: 250px; /* Largura mínima para evitar que fiquem muito estreitos */
+    box-shadow: 0 8px 20px rgba(74, 20, 140, 0.2);
     display: flex;
     flex-direction: column;
-}
-
-.card-header {
-    font-size: 0.95rem;
-    margin-bottom: 10px;
-    display: flex;
     align-items: center;
-    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent; /* Borda inicial transparente para não causar "pulo" no hover */
 }
 
-.card-header .card-usuario {
-    font-weight: bold;
+/* Destaque especial para o 1º Lugar */
+.podium-card.rank-1 {
+    /* O 1º lugar é um pouco mais alto e elevado */
+    padding-top: 30px;
+    padding-bottom: 35px; 
+    /* Move o card para cima para criar o efeito de pódio */
+    transform: translateY(-25px); 
+    z-index: 10; /* Garante que a sombra fique por cima dos outros cards */
+    width: 30%; /* Um pouco mais largo que os outros */
+    box-shadow: 0 15px 40px rgba(109, 40, 217, 0.5);
+    border: 2px solid #FFD700; /* Borda dourada para o campeão */
+}
+
+/* Efeito de hover opcional para dar mais vida */
+.podium-card:hover {
+    transform: translateY(-10px); /* Levanta um pouco no hover */
+    box-shadow: 0 12px 30px rgba(74, 20, 140, 0.3);
+}
+
+.podium-card.rank-1:hover {
+    /* O hover do 1º lugar levanta um pouco mais, mantendo a elevação original */
+    transform: translateY(-35px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(109, 40, 217, 0.6);
+}
+
+
+/* --- Estilos do Conteúdo Interno dos Cards (mantidos) --- */
+
+.podium-user-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+.podium-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.podium-trophy {
+    width: 40px;
+    height: 40px;
+    margin: 10px 0;
+}
+
+.podium-rating {
+    font-size: 1.2rem;
+    color: #FFD700; /* Cor de estrela dourada */
+    margin-bottom: 5px;
+}
+
+.podium-score {
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* --- Tabela de Classificação --- */
+.ranking-list {
+    width: 100%;
+}
+
+.ranking-list table {
+    width: 100%;
+    border-collapse: separate; /* Permite espaçamento entre as linhas */
+    border-spacing: 0 10px; /* Espaçamento vertical entre as linhas */
+    text-align: left;
+}
+
+.ranking-list th {
+    font-family: 'Poppins', sans-serif;
+    color: #8A8A9E;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    padding: 10px 15px;
+}
+
+.ranking-list td {
+    background-color: #F8F7FC; /* Fundo lavanda bem claro para as linhas */
+    padding: 18px 15px;
     color: #271037;
+    font-weight: 600;
+    vertical-align: middle;
 }
 
-.card-body .card-text {
-    font-size: 1rem;
-    color: #271037;
-    line-height: 1.6;
+/* Arredonda as células da ponta de cada linha */
+.ranking-list td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+.ranking-list td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-/* Responsividade */
+.ranking-list td img {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .podium-card {
+        width: 45%; /* Dois cards por linha em tablets */
+    }
+    .podium-card.rank-1 {
+        transform: none; /* Remove o efeito de elevação para evitar sobreposição */
+    }
+}
+
 @media (max-width: 768px) {
-    main {
-        padding: 20px 15px;
+    .ranking-container h1 {
+        font-size: 2.5rem;
     }
-
-    /* Alterado de .container-sugestoes h1 */
-    .container-avaliacoes h1 {
-        font-size: 2.2rem;
+    .podium {
+        flex-direction: column; /* Empilha os cards */
+        align-items: center;
+        gap: 25px;
     }
+    .podium-card {
+        width: 80%;
+        max-width: 320px;
+    }
+    .podium-card.rank-2 { order: 2; } /* Reordena para mobile */
+    .podium-card.rank-1 { order: 1; }
+    .podium-card.rank-3 { order: 3; }
 
-    /* Alterado de #lista-sugestoes */
-    #lista-melhores-avaliados {
-        grid-template-columns: 1fr;
-        gap: 20px;
+    /* Transforma a tabela em um layout de cards para mobile */
+    .ranking-list thead {
+        display: none; /* Esconde os cabeçalhos */
+    }
+    .ranking-list tr {
+        display: block;
+        background-color: #F8F7FC;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    .ranking-list td {
+        display: block;
+        text-align: right; /* Alinha o valor à direita */
+        padding: 8px;
+        background-color: transparent;
+        border-bottom: 1px solid #E6E0F9;
+    }
+    .ranking-list td:last-child {
+        border-bottom: none;
+    }
+    .ranking-list td::before {
+        content: attr(data-label); /* Pega o texto do atributo data-label */
+        float: left; /* Alinha o "título" à esquerda */
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #8A8A9E;
+    }
+    /* Arredondamento não é mais necessário nas células individuais */
+    .ranking-list td:first-child, .ranking-list td:last-child {
+        border-radius: 0;
     }
 }

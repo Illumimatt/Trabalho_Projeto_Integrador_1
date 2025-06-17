@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>Reclamações Resolvidas - Fala, CEUB!</title>
+  <title>Melhores Avaliados - Fala, CEUB!</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@600;700&family=Syne:wght@700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../css/melhores-avaliados.css" />
 </head>
 <body>
@@ -34,55 +36,77 @@
   </header>
 
   <script>
+    // Script de autenticação do usuário (idêntico ao restante do projeto)
     document.addEventListener('DOMContentLoaded', () => {
       const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
       const authButtons = document.querySelector('.auth-buttons');
 
-      if (!usuario) {
-        window.location.href = 'entrar.html';
-        return;
+      if (usuario) {
+        authButtons.innerHTML = `
+          <span class="usuario-logado">Olá, ${usuario.nome}</span>
+          <button id="logout-btn" class="btn-sair">Sair</button>
+        `;
+        document.getElementById('logout-btn').addEventListener('click', () => {
+          localStorage.removeItem('usuario');
+          window.location.href = 'entrar.html';
+        });
       }
-
-      authButtons.innerHTML = `
-        <span class="usuario-logado">Olá, ${usuario.nome}</span>
-        <button id="logout-btn" class="btn-sair">Sair</button>
-      `;
-      document.getElementById('logout-btn').addEventListener('click', () => {
-        localStorage.removeItem('usuario');
-        window.location.href = 'entrar.html';
-      });
     });
   </script>
 
   <main>
-    <div class="container-avaliacoes">
-      <a href="reclame.html">&lt; Voltar</a>
+    <div class="ranking-container">
+      <a href="avalie.html" class="btn-voltar">&lt; Voltar para Avaliar</a>
       <h1>Melhores Avaliados</h1>
-      <div id="lista-melhores-avaliados"></div>
+
+      <section class="podium">
+        <div class="podium-card rank-2">
+          <img src="../css/components/img/user-icon.svg" alt="Ícone de Usuário" class="podium-user-icon">
+          <h3 class="podium-name">Lorem Ipsum</h3>
+          <img src="../css/components/img/silver-trophy.svg" alt="Troféu de Prata" class="podium-trophy">
+          <div class="podium-rating">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <span class="podium-score">(95)</span>
+        </div>
+
+        <div class="podium-card rank-1">
+          <img src="../css/components/img/user-icon.svg" alt="Ícone de Usuário" class="podium-user-icon">
+          <h3 class="podium-name">Lorem Ipsum</h3>
+          <img src="../css/components/img/gold-trophy.svg" alt="Troféu de Ouro" class="podium-trophy">
+          <div class="podium-rating">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <span class="podium-score">(100)</span>
+        </div>
+
+        <div class="podium-card rank-3">
+          <img src="../css/components/img/user-icon.svg" alt="Ícone de Usuário" class="podium-user-icon">
+          <h3 class="podium-name">Lorem Ipsum</h3>
+          <img src="../css/components/img/bronze-trophy.svg" alt="Troféu de Bronze" class="podium-trophy">
+          <div class="podium-rating">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+          </div>
+          <span class="podium-score">(78)</span>
+        </div>
+      </section>
+
+      <section class="ranking-list">
+        <table>
+          <thead>
+            <tr>
+              <th>Colocação</th>
+              <th>Nome</th>
+              <th>Nota</th>
+              <th>Avaliações</th>
+            </tr>
+          </thead>
+          <tbody>
+            </tbody>
+        </table>
+      </section>
+
     </div>
-    <!-- melhores-avaliados.html -->
-
-<!-- Podium de 3 primeiros -->
-<div id="top-1">
-  <span class="nome-local"></span>
-  <span class="nota"></span>
-  <span class="avaliacoes"></span>
-</div>
-<div id="top-2">...</div>
-<div id="top-3">...</div>
-
-<!-- Tabela das posições 4 a 10 -->
-<table id="tabela-avaliados">
-  <thead>
-    <tr>
-      <th>Colocação</th>
-      <th>Nome</th>
-      <th>Nota</th>
-      <th>Avaliações</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
   </main>
 
   <script src="../js/melhores-avaliados.js"></script>
