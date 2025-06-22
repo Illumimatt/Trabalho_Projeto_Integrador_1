@@ -76,7 +76,7 @@
 
 ### **6. Documentação da API**
 
-### **1. Autenticação e Usuários**
+### **6.1. Autenticação e Usuários**
 
 Esta seção cobre o cadastro, login e verificação de usuários.
 
@@ -158,7 +158,7 @@ Esta seção cobre o cadastro, login e verificação de usuários.
 
 -----
 
-### **2. Feedbacks (Envio)**
+### **6.2. Feedbacks (Envio)**
 
 Rotas para criar os diferentes tipos de feedback.
 
@@ -207,7 +207,7 @@ Rotas para criar os diferentes tipos de feedback.
 
 -----
 
-### **3. Feedbacks (Consulta)**
+### **6.3. Feedbacks (Consulta)**
 
 Rotas para listar os feedbacks enviados.
 
@@ -234,7 +234,7 @@ Rotas para listar os feedbacks enviados.
 
 -----
 
-### **4. Ranking e Dados Gerais**
+### **6.4. Ranking e Dados Gerais**
 
 Rotas para popular seletores e a página de ranking.
 
