@@ -1,11 +1,3 @@
-Excelente pergunta\! Criar uma boa documentação é um passo fundamental e muito profissional para qualquer projeto. Isso não só ajuda outras pessoas a entenderem o seu trabalho, mas também ajuda você mesmo no futuro.
-
-Com base em tudo que construímos para o "Fala, CEUB\!", aqui está uma estrutura completa de como você pode documentar o seu projeto. Você pode criar um arquivo chamado `README.md` na pasta raiz do seu projeto e usar a formatação Markdown (como esta que estou usando) para organizá-lo.
-
------
-
-### Estrutura Sugerida para a Documentação do Projeto "Fala, CEUB\!"
-
 ## **Documentação do Projeto: Fala, CEUB\!**
 
 ### **1. Visão Geral do Projeto**
