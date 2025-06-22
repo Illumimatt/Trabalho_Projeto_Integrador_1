@@ -3,7 +3,7 @@
 ### **1. Visão Geral do Projeto**
 
   * **O que é?**
-      * O "Fala, CEUB\!" é uma plataforma de feedback desenvolvida para a comunidade acadêmica do CEUB. O objetivo é criar um canal de comunicação centralizado e seguro onde os alunos podem expressar suas opiniões sobre diversos aspectos da instituição.
+      * O "Fala, CEUB\!" é uma plataforma de feedback teorica desenvolvida para a comunidade acadêmica do CEUB. O objetivo é criar um canal de comunicação centralizado e seguro onde os alunos podem expressar suas opiniões sobre diversos aspectos da instituição.
   * **O Problema que Resolve:**
       * Centraliza feedbacks que estariam espalhados em redes sociais ou grupos, permitindo que tanto os alunos quanto a administração tenham uma visão clara dos pontos fortes e das áreas que necessitam de melhoria.
   * **Público-Alvo:**
@@ -76,44 +76,172 @@
 
 ### **6. Documentação da API**
 
-Aqui você descreve cada rota do seu backend.
+### **1. Autenticação e Usuários**
+
+Esta seção cobre o cadastro, login e verificação de usuários.
+
+#### **`[POST] /api/usuarios`**
+
+  * **Descrição:** Cadastra um novo usuário no sistema.
+  * **Corpo da Requisição (JSON):**
+    ```json
+    {
+      "nome": "Nome do Aluno",
+      "email": "aluno@sempreceub.br",
+      "senha": "senhaSegura123"
+    }
+    ```
+  * **Campos Obrigatórios:** `nome`, `email`, `senha`.
+  * **Resposta de Sucesso (201 Created):**
+    ```json
+    {
+      "mensagem": "Usuário cadastrado com sucesso!",
+      "usuario": {
+        "id": 1,
+        "nome": "Nome do Aluno",
+        "email": "aluno@sempreceub.br",
+        "datacriacao": "2025-06-22T14:30:00.000Z"
+      }
+    }
+    ```
+  * **Respostas de Erro:**
+      * **400 Bad Request:** Se faltar algum campo ou se o e-mail já estiver cadastrado.
+        ```json
+        { "erro": "Este email já está cadastrado" }
+        ```
+      * **500 Internal Server Error:** Se ocorrer um erro no banco de dados.
+
+#### **`[POST] /api/login`**
+
+  * **Descrição:** Autentica um usuário existente e retorna seus dados.
+  * **Corpo da Requisição (JSON):**
+    ```json
+    {
+      "email": "aluno@sempreceub.br",
+      "senha": "senhaSegura123"
+    }
+    ```
+  * **Campos Obrigatórios:** `email`, `senha`.
+  * **Resposta de Sucesso (200 OK):**
+    ```json
+    {
+      "mensagem": "Login realizado com sucesso",
+      "usuario": {
+        "id": 1,
+        "nome": "Nome do Aluno",
+        "email": "aluno@sempreceub.br",
+        "datacriacao": "2025-06-22T14:30:00.000Z"
+      }
+    }
+    ```
+  * **Respostas de Erro:**
+      * **400 Bad Request:** Se as credenciais (email/senha) estiverem incorretas.
+        ```json
+        { "erro": "Email ou senha inválidos" }
+        ```
+      * **500 Internal Server Error:** Se ocorrer um erro no servidor.
+
+#### **`[POST] /api/usuarios/verificar-email`**
+
+  * **Descrição:** Verifica se um e-mail já existe no banco de dados. Útil para validação em tempo real no formulário de cadastro.
+  * **Corpo da Requisição (JSON):**
+    ```json
+    {
+      "email": "aluno@sempreceub.br"
+    }
+    ```
+  * **Resposta de Sucesso (200 OK):**
+    ```json
+    { "emailExiste": true } 
+    // ou { "emailExiste": false }
+    ```
 
 -----
 
-#### **POST** `/api/sugestoes`
+### **2. Feedbacks (Envio)**
+
+Rotas para criar os diferentes tipos de feedback.
+
+#### **`[POST] /api/sugestoes`**
 
   * **Descrição:** Cria uma nova sugestão.
   * **Corpo da Requisição (JSON):**
     ```json
     {
       "usuarioId": 1,
-      "localId": 5, // opcional
-      "texto": "Acho que a biblioteca poderia ter mais tomadas.",
-      "anonimo": false
+      "localId": 5,          // Opcional
+      "texto": "Minha sugestão de melhoria...",
+      "anonimo": false       // Opcional
     }
     ```
-  * **Resposta de Sucesso (201):**
+  * **Resposta de Sucesso (201 Created):** Retorna o objeto da sugestão criada.
+
+#### **`[POST] /api/reclamacoes`**
+
+  * **Descrição:** Cria uma nova reclamação (com status padrão 'Pendente').
+  * **Corpo da Requisição (JSON):**
     ```json
-    { "sucesso": true, "sugestao": { ...dados da sugestão criada... } }
+    {
+      "usuarioId": 1,
+      "localId": 2,          // Opcional
+      "texto": "Minha reclamação sobre o item...",
+      "anonimo": true        // Opcional
+    }
     ```
+  * **Resposta de Sucesso (201 Created):** Retorna o objeto da reclamação criada.
+
+#### **`[POST] /api/avaliacao`**
+
+  * **Descrição:** Cria uma nova avaliação com nota.
+  * **Corpo da Requisição (JSON):**
+    ```json
+    {
+      "usuarioId": 1,
+      "localId": 8,          // Opcional
+      "texto": "Gostei muito, mas poderia melhorar.",
+      "anonimo": false,      // Opcional
+      "nota": 4.5            // Opcional
+    }
+    ```
+  * **Resposta de Sucesso (201 Created):** Retorna o objeto da avaliação criada.
 
 -----
 
-#### **POST** `/api/reclamacoes`
+### **3. Feedbacks (Consulta)**
 
-  * **Descrição:** Cria uma nova reclamação.
-  * **Corpo da Requisição (JSON):** Similar ao de sugestões.
-  * **Resposta de Sucesso (201):**
+Rotas para listar os feedbacks enviados.
+
+#### **`[GET] /api/sugestoes/recentes`**
+
+  * **Descrição:** Lista todas as sugestões, ordenadas da mais recente para a mais antiga.
+  * **Resposta de Sucesso (200 OK):** Retorna um array de objetos de sugestão.
     ```json
-    { "sucesso": true, "reclamacao": { ...dados da reclamação criada... } }
+    [
+      { "id": 1, "texto": "...", "anonimo": false, "usuarioNome": "Nome do Aluno", "criadoEm": "..." },
+      { "id": 2, "texto": "...", "anonimo": true, "usuarioNome": null, "criadoEm": "..." }
+    ]
     ```
+
+#### **`[GET] /api/reclamacoes/pendentes`**
+
+  * **Descrição:** Lista todas as reclamações com `status = 'Pendente'`.
+  * **Resposta de Sucesso (200 OK):** Retorna um array de objetos de reclamação.
+
+#### **`[GET] /api/reclamacoes/resolvidas`**
+
+  * **Descrição:** Lista todas as reclamações com `status = 'Resolvido'`.
+  * **Resposta de Sucesso (200 OK):** Retorna um array de objetos de reclamação.
 
 -----
 
-#### **GET** `/api/ranking/melhores-avaliados`
+### **4. Ranking e Dados Gerais**
 
-  * **Descrição:** Retorna uma lista ordenada de locais baseada na nota média e quantidade de avaliações.
-  * **Resposta de Sucesso (200):**
+Rotas para popular seletores e a página de ranking.
+
+#### **`[GET] /api/ranking/melhores-avaliados`**
+
+  * **Descrição:** Retorna a lista de locais ordenados pela maior nota média. Utiliza a função `get_melhores_avaliados` do banco de dados.
+  * **Resposta de Sucesso (200 OK):**
     ```json
     [
       {
@@ -126,13 +254,94 @@ Aqui você descreve cada rota do seu backend.
     ]
     ```
 
------
+#### **`[GET] /api/categorias`**
 
-*(Continue descrevendo as outras rotas: `/api/reclamacoes/pendentes`, `/api/reclamacoes/resolvidas`, etc.)*
+  * **Descrição:** Retorna a lista de todas as categorias disponíveis.
+  * **Resposta de Sucesso (200 OK):** Retorna um array de objetos de categoria.
+
+#### **`[GET] /api/locais`**
+
+  * **Descrição:** Retorna a lista de todos os locais disponíveis com o nome da sua categoria.
+  * **Resposta de Sucesso (200 OK):** Retorna um array de objetos de local.
+
+#### **`[GET] /api/locais/categoria/:categoriaId`**
+
+  * **Descrição:** Retorna a lista de locais que pertencem a uma categoria específica.
+  * **Parâmetro de Rota:** `categoriaId` (O ID da categoria).
+  * **Resposta de Sucesso (200 OK):** Retorna um array de objetos de local.
 
 ### **7. Esquema do Banco de Dados**
 
-  * **Tabela `usuario`**: Armazena informações dos usuários (nome, email, senha).
-  * **Tabela `categoria`**: Armazena os tipos de categoria (ex: "sala\_de\_aula", "equipamentos", "servicos").
-  * **Tabela `local`**: Armazena os locais/itens que podem ser avaliados (ex: "sala\_101", "atendimento\_secretaria"). Relaciona-se com `categoria`.
-  * **Tabela `feedback`**: Tabela principal que armazena todas as avaliações, reclamações e sugestões. Relaciona-se com `usuario` e `local`. Possui colunas `tipo` ('Avaliação', 'Reclamação', 'Sugestão') e `status` ('Pendente', 'Resolvido').
+O banco de dados do projeto é estruturado em torno de algumas tabelas principais que se relacionam para armazenar usuários, itens avaliáveis e os feedbacks.
+
+---
+#### **Tabela `usuario`**
+Armazena as informações de cada usuário cadastrado na plataforma.
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| **`id`** | `serial` | **Chave Primária.** Identificador único para cada usuário. |
+| `nome` | `text` | Nome completo do usuário. |
+| `email`| `text` | E-mail do usuário. **Único.** |
+| `senha`| `text` | Senha do usuário, armazenada com hash e salt. |
+| `tipo` | `varchar(20)`| Define o perfil do usuário (ex: 'Estudante', 'Professor', 'Moderador'). |
+| `datacadastro`| `timestamp`| Data e hora do cadastro. Padrão: `now()`. |
+| `ra` | `text` | Registro Acadêmico do aluno. **Único.** |
+
+---
+#### **Tabela `categoria`**
+Funciona como uma tabela de lookup para agrupar diferentes tipos de locais.
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| **`id`** | `serial` | **Chave Primária.** |
+| `nome` | `text` | Nome da categoria (ex: 'sala_de_aula', 'equipamentos'). **Único.** |
+
+---
+#### **Tabela `local`**
+Armazena cada item específico que pode ser alvo de um feedback.
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| **`id`** | `serial` | **Chave Primária.** |
+| `nome` | `text` | Nome do local (ex: 'sala_101', 'biblioteca_central'). **Único.** |
+| `categoriaid`| `integer` | **Chave Estrangeira** que referencia `categoria(id)`. |
+
+---
+#### **Tabela `servicos`**
+Armazena serviços específicos que podem ser avaliados e que não se encaixam necessariamente em um `local`.
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| **`id`** | `bigint` | **Chave Primária.** |
+| `nome` | `text` | Nome do serviço (ex: 'suporte_de_ti_helpdesk'). |
+
+---
+#### **Tabela `feedback`**
+É a tabela central do sistema, armazenando todas as avaliações, reclamações e sugestões.
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| **`id`** | `serial` | **Chave Primária.** |
+| `usuarioid`| `integer` | **Chave Estrangeira** que referencia `usuario(id)`. |
+| `localid`| `integer` | **Chave Estrangeira** que referencia `local(id)`. (Opcional) |
+| `servicosid`| `bigint`| **Chave Estrangeira** que referencia `servicos(id)`. (Opcional) |
+| `tipo` | `enum` | Tipo de feedback ('Avaliação', 'Reclamação', 'Sugestão'). |
+| `texto`| `text` | O conteúdo do comentário do usuário. |
+| `nota` | `float`| A nota de 1 a 5, usada apenas para `tipo = 'Avaliação'`. |
+| `status` | `enum` | O estado de um feedback ('Pendente', 'Resolvido'). Padrão: `'Pendente'`. |
+| `anonimo`| `boolean`| Se `true`, o nome do autor não deve ser exibido. Padrão: `false`.|
+| `datacriacao`| `timestamp`| Data e hora de envio do feedback. Padrão: `now()`. |
+
+---
+#### **Tabela `resolucao`**
+Armazena a resposta ou a solução dada a um `feedback`, geralmente a uma reclamação.
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| **`id`** | `serial` | **Chave Primária.** |
+| `feedbackid`| `integer` | **Chave Estrangeira** que referencia `feedback(id)`. |
+| `tecnicoid`| `integer` | **Chave Estrangeira** que referencia `usuario(id)` (o moderador que resolveu). |
+| `descricao`| `text` | Descrição da solução aplicada. |
+| `dataresolucao`|`timestamp`| Data e hora da resolução. Padrão: `now()`. |
+| `status` | `enum` | Status da moderação (ex: 'Aprovado', 'Rejeitado'). |
