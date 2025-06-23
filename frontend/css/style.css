@@ -10,12 +10,24 @@ body {
 }
 
   
-  header {
-    background: rgba(134, 110, 153, 0.07); /* 0.07 = 7% de opacidade */
-    color: white;
-    padding: 30px 0;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(145, 127, 160, 0.171); /* cor inicial mais transparente */
+  color: white;
+  padding: 30px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+  header.scrolled {
+    background: rgba(0, 0, 0, 0.623); /* mais opaco ao rolar */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* sombra mais visível opcional */
   }
+
     
   nav {
     display: flex;

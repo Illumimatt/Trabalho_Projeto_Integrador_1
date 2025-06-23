@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/components/cards.css">
     <link rel="stylesheet" href="css/components/buttons.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
 </head>
 <body>
@@ -35,12 +36,20 @@
                     <li><a href="pages/para-empresas.html">Para Empresas</a></li>
                 </ul>
             </div>
+
+            <!-- Menu Mobile Toggle -->
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
            
             <div class="auth-buttons">
                 <a href="pages/criar-conta.html" class="btn-criar-conta">criar conta</a>
                 <a href="pages/entrar.html" class="btn-entrar">Entrar</a>
             </div>
         </nav>
+        </div>
     </header>
    
     <main>
@@ -51,18 +60,18 @@
             </div>
            
             <div class="hero-image">
-                <img class="ellipse" src="..\frontend\css\components\img\Ellipse 2.png" alt="Elipse decorativa">
-                <img class="ellipse2" src="..\frontend\css\components\img\Ellipse 3.png" alt="Elipse decorativa">
-                <img class="ellipse3" src="..\frontend\css\components\img\Ellipse 4.png" alt="Elipse decorativa">
-                <img class="ceuba" src="..\frontend\css\components\img\ceuba.svg" alt="Avatar de usuário">
-                </div>
+                <img class="ellipse" src="css/components/img/Ellipse 2.png" alt="Elipse decorativa">
+                <img class="ellipse2" src="css/components/img/Ellipse 3.png" alt="Elipse decorativa">
+                <img class="ellipse3" src="css/components/img/Ellipse 4.png" alt="Elipse decorativa">
+                <img class="ceuba" src="css/components/img/ceuba.svg" alt="Avatar de usuário">
+            </div>
         </section>
 
         <section class="features-container">
             <div class="features">
                 <div class="feature-card avalie">
                     <h2 class="titulo">Avalie</h2>
-                    <img class="estrela" src="..\frontend\css\components\img\star.svg" alt="Ícone de estrela">
+                    <img class="estrela" src="css/components/img/star.svg" alt="Ícone de estrela">
                     <a href="pages/avalie.html" class="action-button">
                         Avaliar
                         <span class="arrow-icon">›</span>
@@ -71,7 +80,7 @@
 
                 <div class="feature-card reclame">
                     <h2 class="titulo">Reclame</h2>
-                    <img class="sino" src="..\frontend\css\components\img\notification sign.svg" alt="Ícone de sino">
+                    <img class="sino" src="css/components/img/notification sign.svg" alt="Ícone de sino">
                     <a href="pages/reclame.html" class="action-button">
                         Reclamar
                         <span class="arrow-icon">›</span>
@@ -80,7 +89,7 @@
 
                 <div class="feature-card sugira">
                     <h2 class="titulo">Sugira</h2>
-                    <img class="lampada" src="..\frontend\css\components\img\purple light bulb.svg" alt="Ícone de lâmpada">
+                    <img class="lampada" src="css/components/img/purple light bulb.svg" alt="Ícone de lâmpada">
                     <a href="pages/sugira.html" class="action-button">
                         Sugerir
                         <span class="arrow-icon">›</span>
@@ -97,9 +106,6 @@
         </section>
     </main>
    
-
-    <!-- Avatar flutuante no canto inferior direito -->
-   
     <!-- JavaScript -->
     <script src="js/main.js"></script>
     <script src="js/components/chat.js"></script>
@@ -108,8 +114,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
   const authButtons = document.querySelector('.auth-buttons');
 
+  // Menu mobile toggle
+  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+  const menu = document.querySelector('.menu');
+
+  if (mobileMenuToggle) {
+    mobileMenuToggle.addEventListener('click', () => {
+      menu.classList.toggle('active');
+      mobileMenuToggle.classList.toggle('active');
+    });
+  }
+
+  // Header scroll effect
+  window.addEventListener("scroll", function() {
+    const header = document.querySelector("header");
+    if (window.scrollY > 50) {
+      header.classList.add("scrolled");
+    } else {
+      header.classList.remove("scrolled");
+    }
+  });
+
+  // User authentication check
   if (usuario) {
-    // exibe "Olá, Nome" + botão Sair
     authButtons.innerHTML = `
       <span class="usuario-logado">Olá, ${usuario.nome}</span>
       <button id="logout-btn" class="btn-sair">Sair</button>
@@ -122,7 +149,23 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'pages/entrar.html';
       });
   }
-  // se não tiver usuário no storage, deixa os botões originais
+
+  // Close mobile menu when clicking on menu items
+  const menuLinks = document.querySelectorAll('.menu a');
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.remove('active');
+      mobileMenuToggle.classList.remove('active');
+    });
+  });
+
+  // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+      menu.classList.remove('active');
+      mobileMenuToggle.classList.remove('active');
+    }
+  });
 });
 </script>
 </body>
