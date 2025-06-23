@@ -1,4 +1,5 @@
-/* style.css - Arquivo CSS básico para testar caminhos */
+/* style.css - Atualizado para responsividade e correção das imagens */
+
 body {
     font-family: 'Montserrat', sans-serif;
     margin: 0;
@@ -7,367 +8,396 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    min-height: 100vh; /* Garante que o background cubra a altura total */
 }
 
-  
+/* Regra global para imagens para evitar problemas de transbordamento */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove o espaço extra abaixo de imagens */
+}
+ 
 header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(145, 127, 160, 0.171); /* cor inicial mais transparente */
-  color: white;
-  padding: 30px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  z-index: 1000;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(145, 127, 160, 0.171);
+    color: white;
+    padding: 2rem 0; /* Convertido de 30px para rem */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-  header.scrolled {
-    background: rgba(0, 0, 0, 0.623); /* mais opaco ao rolar */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* sombra mais visível opcional */
-  }
+header.scrolled {
+    background: rgba(0, 0, 0, 0.623);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
 
-    
-  nav {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
-    padding: 0 40px;
-  }
-    
-  .logo {
+    padding: 0 4vw; /* Convertido de 40px para vw */
+}
+
+.logo {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  
-  .logo a {
-    display: flex;
-    align-items: center;  /* Alinha verticalmente */
-    text-decoration: none;
-  }
+}
 
-  .logo-text {
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-text {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700; /* Bold */
-    font-size: 27px;  /* Tamanho da imagem que você mostrou */
+    font-weight: 700;
+    font-size: clamp(1.2rem, 1.5vw + 1rem, 1.7rem); /* Convertido para clamp */
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  }
+}
 
-  .logo-icon {
-    height: 40px; /* Aumente aqui se quiser maior */
-    margin-right: 10px;
-  }
+.logo-icon {
+    height: clamp(2rem, 3vw, 2.5rem); /* Convertido para clamp */
+    margin-right: 0.5rem;
+}
 
-  .menu {
+.menu {
     flex: 2;
     display: flex;
     justify-content: center;
-  }
+}
 
-  
-  .menu ul {
+.menu ul {
     display: flex;
-    list-style: none; /* opcional: tira os marcadores */
+    list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* deixa os itens numa linha só */
-    gap: 65px; /* espaço entre os itens */
-  }
-  
-  .menu ul li {
-    margin: 0 15px;
-  }
-  
-  .menu ul li a {
+    gap: 2vw; /* Convertido de 65px para vw */
+}
+
+.menu ul li {
+    margin: 0 0.5rem;
+}
+
+.menu ul li a {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600; /* Semibold */
-    font-size: 21px;
+    font-weight: 600;
+    font-size: clamp(1rem, 1.2vw + 0.5rem, 1.3rem); /* Convertido para clamp */
     color: #FFFF;
     text-decoration: none;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
     align-items: center;
-    }
+}
 
-  
-  /*landing page*/
-  .hero {
+/* Landing page */
+.hero {
     display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
     align-items: center;
     justify-content: space-between;
-    padding: 80px;
+    padding: 5vw; /* Convertido de 80px para vw */
     min-height: 80vh;
-  }
+    position: relative; /* Essencial para posicionar as elipses e o ceuba */
+    overflow: hidden; /* Corta qualquer conteúdo que transborde (bom para as elipses) */
+}
 
-  .hero-content {
-    max-width: 50%;
-  }
+.hero-content {
+    max-width: 45%; /* Ajuste a largura máxima para dar espaço à imagem */
+    flex-basis: 45%; /* Define a base flexível para este item */
+    z-index: 3; /* Garante que o texto fique acima das elipses */
+}
 
-  .hero-content h1 {
+.hero-content h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
-    font-size: 130px;
+    font-size: clamp(3rem, 7vw + 2rem, 8rem); /* Convertido para clamp */
     color: #220E30;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 50px; /* Abaixa o título */
-    max-width: 200%;
-  }
+    margin-top: 2rem; /* Convertido de 50px para rem */
+    max-width: 100%;
+    line-height: 1;
+}
 
-  .hero-content p {
+.hero-content p {
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
-    font-size: 68px;
+    font-size: clamp(1.5rem, 3vw + 1rem, 4rem); /* Convertido para clamp */
     color: #FFFF;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.55);
-    margin-top: -100px; /* Abaixa o parágrafo */
-    letter-spacing: 1px;
-    word-spacing: 6px;
+    margin-top: -2rem; /* Ajuste a margem negativa para aproximar do título, convertido para rem */
+    letter-spacing: 0.05rem; /* Convertido de 1px para rem */
+    word-spacing: 0.3rem; /* Convertido de 6px para rem */
     max-width: 100%;
-  }
+}
 
-  .highlight {
-  text-shadow: none !important;
-  }
+.highlight {
+    background-image: linear-gradient(to right, #F2F2F2, #6f5581);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none !important;
+}
 
-  .hero-image {
+.fala {
+    color: #FFFFFF;
+}
+
+.hero-image {
     position: relative;
-    width: 50vw;        /* ocupar toda a largura da viewport */
-    max-width: 1200px;   /* limite para não ficar enorme em telas super largas */
-    margin: 0 auto;      /* centraliza o container na tela */
-    height: 600px;       /* ou ajuste conforme necessário */
-    overflow: visible;
-  }
+    width: 50vw;
+    max-width: 1000px;
+    height: 0; /* Remove altura fixa */
+    padding-bottom: 50%; /* Truque para manter proporção (50% da largura do elemento) */
+    overflow: visible; /* Mantém como visível, se as elipses devem "sair" */
+    flex-basis: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
 
-  .hero-image img {
-    width: 220px;
-  }
+/* REMOVIDO: .hero-image img { width: 220px; } - Esta regra genérica estava causando problemas. */
 
-  .highlight {
-  background-image: linear-gradient(to right, #F2F2F2, #6f5581);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  }
-  
-  .fala {
-  color: #FFFFFF; /* cor que quiser */
-  }
+/* ELLIPSES (ajustadas para % e vw, com `height: auto` para manter proporção) */
+.hero-image .ellipse {
+    position: absolute;
+    top: 30%; /* Ajuste percentual para posicionamento */
+    left: 45%; /* Ajuste percentual */
+    transform: translateX(-50%);
+    width: 10vw; /* Tamanho responsivo com vw */
+    max-width: 500px; /* Limite para evitar que cresça demais */
+    height: auto; /* Garante proporção */
+    z-index: 1;
+    pointer-events: none; /* Impede que atrapalhe cliques */
+}
 
+.hero-image .ellipse2 {
+    position: absolute;
+    top: 15%; /* Ajuste percentual */
+    left: 80%; /* Ajuste percentual */
+    transform: translateX(-50%);
+    width: 20vw; /* Tamanho responsivo com vw */
+    max-width: 700px;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+}
 
-  .auth-buttons {
+.hero-image .ellipse3 {
+    position: absolute;
+    top: 55%; /* Ajuste percentual */
+    left: 40%; /* Ajuste percentual */
+    transform: translateX(-50%);
+    width: 16vw; /* Tamanho responsivo com vw */
+    max-width: 600px;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* IMAGEM DO AVATAR CEUBA (ajustada para % e vw) */
+.hero-image .ceuba {
+    position: absolute;
+    top: 40%; /* Ajuste percentual para posicionamento vertical */
+    left: 40%; /* Centraliza horizontalmente */
+    transform: translate(-50%, -50%); /* Centraliza completamente (metade do próprio tamanho) */
+    width: 1130px; /* Tamanho responsivo com vw */
+    max-width: 1500px; /* Limite para não ficar enorme */
+    height: auto; /* Mantém a proporção */
+    z-index: 2;
+    /* REMOVIDO: margin-top: -330px; -> 'top' e 'transform' agora cuidam do posicionamento */
+}
+
+.auth-buttons {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 12px;
-  }
+    gap: 0.5rem; /* Convertido de 12px para rem */
+}
 
-  .auth-buttons a {
-    margin-left: 15px;
-    padding: 8px 15px;
+.auth-buttons a {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem; /* Convertido de 8px 15px para rem */
     text-decoration: none;
-  }
-  
-  .btn-criar-conta {
+}
+
+.btn-criar-conta {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700; /* Bold */
-    font-size: 20px;
+    font-weight: 700;
+    font-size: clamp(0.9rem, 1vw + 0.5rem, 1.2rem); /* Convertido para clamp */
     color: #271037;
     text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.45);
-  }
-  
-  .btn-entrar {
+}
+
+.btn-entrar {
     background-color: #33194d;
     font-family: 'Montserrat', sans-serif;
-    font-weight: 700; /* Bold */
-    font-size: 20px;
+    font-weight: 700;
+    font-size: clamp(0.9rem, 1vw + 0.5rem, 1.2rem); /* Convertido para clamp */
     color: white;
     border-radius: 5px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
-  }
-    
-  .features-container {
+.features-container {
     background-color: #EAE1F5;
     border-radius: 20px;
-    max-width: 1700px;
+    max-width: 90vw; /* Convertido de 1700px para vw */
     margin: 40px auto;
-    padding: 40px 30px;
-  }
+    padding: 3vw 2vw; /* Convertido de 40px 30px para vw */
+}
 
-    
-  .features {
+.features {
     display: flex;
-    gap: 20px;
+    flex-wrap: wrap; /* Adicionado para responsividade */
+    justify-content: center; /* Centraliza cards */
+    gap: 2vw; /* Convertido de 20px para vw */
     margin-bottom: 30px;
-  }
-  
-  .feature-card {
-    background: radial-gradient(
-      circle at center,
-      #BCA5D0 0%,
-      #2E1640 100%);
+}
+
+.feature-card {
+    background: radial-gradient(circle at center, #BCA5D0 0%, #2E1640 100%);
     color: white;
     border-radius: 15px;
-    padding: 20px;
+    padding: 2vw; /* Convertido de 20px para vw */
     flex: 1;
-    min-width: 300px;
-    min-height: 240px;
+    min-width: 280px; /* Ajuste para responsividade */
+    max-width: 30%; /* Limita a largura para caber 3 por linha */
+    min-height: 200px; /* Ajuste para responsividade */
     position: relative;
-  }
-  
-  
-  .feature-card img {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Ajustes específicos para as imagens dos cards (ajustados com clamp para melhor escalabilidade) */
+/* Removida a regra genérica `feature-card img` pois estava sobrescrevendo os específicos */
+
+.feature-card.avalie .estrela {
+    width: clamp(10rem, 15vw, 16.25rem); /* Ajuste com clamp, aprox 260px */
+    height: auto;
     position: absolute;
-    right: 20px;
-    top: 20px;
-    width: 60px;
-    height: 60px;
-  }
-  
-  .action-button {
+    top: 2.5rem; /* Convertido de 40px para rem */
+    right: 1.25rem; /* Convertido de 20px para rem */
+}
+
+.feature-card.reclame .sino {
+    width: clamp(15rem, 20vw, 21.25rem); /* Ajuste com clamp, aprox 340px */
+    height: auto;
+    position: absolute;
+    top: 1.25rem; /* Convertido de 20px para rem */
+    right: -3.125rem; /* Convertido de -50px para rem */
+}
+
+.feature-card.sugira .lampada {
+    width: clamp(8rem, 12vw, 13.125rem); /* Ajuste com clamp, aprox 210px */
+    height: auto;
+    position: absolute;
+    top: 1.875rem; /* Convertido de 30px para rem */
+    right: 1.25rem; /* Convertido de 20px para rem */
+}
+
+.action-button {
     display: inline-flex;
     align-items: center;
     justify-content: space-between;
-    padding: 15px 30px;
+    padding: 1rem 2rem; /* Convertido de 15px 30px para rem */
     border-radius: 15px;
-
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: clamp(0.9rem, 1vw + 0.5rem, 1.2rem); /* Convertido para clamp */
     color: #FFFFFF;
     text-decoration: none;
-
     background: linear-gradient(90deg, #422050 0%, #8D71A5 100%);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
-
     transition: background 0.3s ease;
-  }
+    margin-top: auto;
+}
 
-  .action-button:hover {
+.action-button:hover {
     background: linear-gradient(90deg, #58386A 0%, #A98DCC 100%);
-  }
+}
 
-  .arrow-icon {
-    margin-left: 10px;
-    font-size: 20px;
+.arrow-icon {
+    margin-left: 0.5rem;
+    font-size: clamp(1rem, 1.2vw, 1.25rem);
     line-height: 1;
-  }
-    
-  .quick-links {
+}
+
+.quick-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 75px;
+    gap: 2vw; /* Convertido de 75px para vw */
     margin-top: 40px;
-  }
+}
 
-  .quick-link {
+.quick-link {
     background-color: #EFE6F7;
     color: #3B2250;
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    font-size: 27px;
+    font-size: clamp(1.1rem, 1.5vw + 0.5rem, 1.7rem); /* Convertido para clamp */
     text-align: center;
     text-decoration: underline;
     text-underline-offset: 4px;
-
-    padding: 25px 30px;
+    padding: 1.5vw 2vw; /* Convertido de 25px 30px para vw */
     border: 2px solid #3B2250;
     border-radius: 15px;
     box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
-
     transition: all 0.2s ease-in-out;
-  }
-
-  .quick-link:hover {
-    transform: translateY(-2px);
-    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.25);
-  }
-
-  
-    /* ELLIPSE atrás */
-  .hero-image .ellipse {
-    position: absolute;
-    top: 16%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 17%;          /* tamanho relativo ao container */
-    max-width: 800px;    /* nunca passe desse valor */
-    z-index: 1;
-  }
-
-    .hero-image .ellipse2 {
-    position: absolute;
-    top: -10%;
-    left: 84%;
-    transform: translateX(-50%);
-    width: 40%;          /* tamanho relativo ao container */
-    max-width: 800px;    /* nunca passe desse valor */
-    z-index: 1;
-  }
-
-    .hero-image .ellipse3 {
-    position: absolute;
-    top: 50%;
-    left: 44%;
-    transform: translateX(-50%);
-    width: 35%;          /* tamanho relativo ao container */
-    max-width: 800px;    /* nunca passe desse valor */
-    z-index: 1;
-  }
-
-  .hero-image .ceuba {
-    position: absolute;
-    top: 150px;          /* ajuste vertical */
-    left: 40%;
-    transform: translateX(-50%);
-    width: 1100px;        /* escala menor para caber direitinho */
-    height: auto;
-    margin-top: -330px; 
-    z-index: 2;
-  }
-
-  .feature-card.avalie .estrela {
-    width: 260px;    /* ajuste até ficar igual ao mockup */
-    height: auto;
-    position: absolute;
-    top: 40px;       /* alinhe verticalmente como precisar */
-    right: 20px;     /* alinhe horizontalmente como precisar */
-  }
-
-  /* ícone “sino” no card Reclame */
-  .feature-card.reclame .sino {
-    width: 340px;
-    height: auto;
-    position: absolute;
-    top: 20px;
-    right: -50px;
-  }
-
-  /* ícone “lâmpada” no card Sugira */
-  .feature-card.sugira .lampada {
-    width: 210px;
-    height: auto;
-    position: absolute;
-    top: 30px;      /* possivelmente precisa “subir” um pouco mais */
-    right: 20px;
-  }
-  
-  
-.titulo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 70px;
-  position:relative;
-  top: -40px;     /* ajuste vertical */
-  left: 25px;    /* ajuste horizontal */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  letter-spacing: 2px;
+    flex-basis: auto;
+    min-width: 250px;
 }
 
+.quick-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.25);
+}
 
-  /* Este comentário serve para verificar se o arquivo CSS está sendo carregado */
-  /* Teste de caminho: OK se você visualizar o estilo básico aplicado */
+.titulo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw + 1rem, 4.375rem); /* Convertido para clamp */
+    position: relative;
+    top: -2.5rem; /* Convertido de -40px para rem */
+    left: 1.5rem; /* Convertido de 25px para rem */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 2px;
+}
+
+/* Esconder o mobile-menu-toggle por padrão em telas maiores */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* Estilos para os botões de autenticação quando dentro do menu mobile */
+.auth-buttons.active {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    align-items: center; /* Centraliza os botões */
+}
+.auth-buttons.active .btn-criar-conta {
+    color: white; /* Garante visibilidade no fundo escuro do menu */
+    text-shadow: none;
+    margin-bottom: 10px; /* Espaçamento entre os botões */
+}
+.auth-buttons.active .btn-entrar {
+    margin-left: 0; /* Remove margem extra */
+}
+.auth-buttons.active .usuario-logado {
+    color: white;
+    padding-bottom: 10px;
+}

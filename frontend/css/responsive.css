@@ -1,0 +1,307 @@
+/* responsive.css */
+
+/* Para telas menores que 1200px (Exemplo de breakpoint para tablets e laptops menores) */
+@media (max-width: 1200px) {
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 6vw + 1rem, 7rem);
+    }
+
+    .hero-content p {
+        font-size: clamp(1.2rem, 2.5vw + 1rem, 3.5rem);
+        margin-top: -1rem;
+    }
+
+    /* Ajuste de tamanho e posição para ceuba e elipses em telas um pouco menores */
+    .hero-image .ceuba {
+        width: 50vw; /* Um pouco menor */
+        top: 28%; /* Ajuste de posição */
+    }
+    .hero-image .ellipse {
+        top: 12%;
+        left: 40%;
+        width: 35vw;
+    }
+    .hero-image .ellipse2 {
+        top: -8%;
+        left: 75%;
+        width: 45vw;
+    }
+    .hero-image .ellipse3 {
+        top: 48%;
+        left: 35%;
+        width: 40vw;
+    }
+
+    .features {
+        gap: 20px; /* Ajuste o gap para tablets */
+    }
+
+    .feature-card {
+        max-width: 45%; /* Para ter 2 cards por linha em tablets */
+        padding: 1.5vw;
+    }
+
+    .quick-links {
+        gap: 40px; /* Ajuste o gap para tablets */
+    }
+}
+
+/* Para telas menores que 992px (Exemplo de breakpoint para tablets em modo paisagem e alguns smartphones grandes) */
+@media (max-width: 992px) {
+    nav {
+        flex-wrap: wrap; /* Permite que os itens da nav quebrem */
+        justify-content: space-between;
+        position: relative; /* Para posicionar o menu mobile */
+    }
+
+    .logo {
+        order: 1; /* Mantém o logo à esquerda */
+    }
+
+    .mobile-menu-toggle {
+        display: flex; /* Mostra o toggle para menu mobile */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1001; /* Garante que o toggle esteja acima do menu */
+        order: 2; /* Move o toggle para a direita */
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        transition: all 0.3s ease;
+    }
+
+    /* Animação do ícone do hambúrguer */
+    .mobile-menu-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .mobile-menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .mobile-menu-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .menu {
+        display: none; /* Oculta o menu principal por padrão */
+        flex-direction: column;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 100%; /* Abaixo do header */
+        left: 0;
+        padding: 1rem 0;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 999; /* Abaixo do toggle */
+    }
+
+    .menu.active {
+        display: flex; /* Mostra o menu quando ativo */
+    }
+
+    .menu ul {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .auth-buttons {
+        display: none; /* Oculta os botões de autenticação em mobile por padrão */
+    }
+    /* Exibe os botões de autenticação no menu mobile quando ativo */
+    .auth-buttons.active { /* Esta classe é adicionada via JS */
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        padding-top: 1rem;
+    }
+    .auth-buttons.active .btn-criar-conta,
+    .auth-buttons.active .btn-entrar,
+    .auth-buttons.active .usuario-logado,
+    .auth-buttons.active #logout-btn {
+        margin: 0.5rem auto;
+        width: fit-content;
+    }
+
+
+    .hero {
+        flex-direction: column; /* Coloca os itens em coluna */
+        text-align: center;
+        padding: 3vw;
+    }
+
+    .hero-content {
+        max-width: 90%;
+        flex-basis: auto;
+        margin-bottom: 2rem;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2rem, 8vw, 5rem);
+        margin-top: 1rem;
+    }
+
+    .hero-content p {
+        font-size: clamp(1rem, 4vw, 2rem);
+        margin-top: 0;
+    }
+
+    .hero-image {
+        width: 80vw;
+        height: 0;
+        padding-bottom: 80%; /* Ajuste a proporção para mobile se necessário */
+        flex-basis: auto;
+        margin-top: 2rem;
+    }
+
+    /* Oculta as elipses para simplificar o layout em telas menores */
+    .hero-image .ellipse,
+    .hero-image .ellipse2,
+    .hero-image .ellipse3 {
+        display: none; 
+    }
+    
+    /* Ajuste para o ceuba sem as elipses */
+    .hero-image .ceuba {
+        width: 70vw;
+        max-width: 500px;
+        top: 50%; /* Centraliza completamente no contêiner com padding-bottom */
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .features {
+        flex-direction: column; /* Um card por linha em telas menores */
+        align-items: center;
+    }
+
+    .feature-card {
+        max-width: 90%; /* Ocupa quase toda a largura */
+        min-width: unset;
+        padding: 1.5rem;
+    }
+
+    /* Ajustes específicos para as imagens dos cards em mobile */
+    .feature-card.avalie .estrela {
+        width: clamp(8rem, 20vw, 10rem);
+        top: 1rem;
+        right: 1rem;
+    }
+
+    .feature-card.reclame .sino {
+        width: clamp(10rem, 25vw, 12rem);
+        top: 1rem;
+        right: -2rem;
+    }
+
+    .feature-card.sugira .lampada {
+        width: clamp(7rem, 18vw, 9rem);
+        top: 1rem;
+        right: 1rem;
+    }
+
+
+    .titulo {
+        font-size: clamp(2rem, 7vw, 3.5rem);
+        top: -2rem;
+        left: 1rem;
+    }
+
+    .action-button {
+        padding: 0.8rem 1.5rem;
+        font-size: clamp(0.8rem, 3vw, 1.1rem);
+    }
+
+    .quick-links {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .quick-link {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        padding: 1rem 1.5rem;
+        max-width: 90%;
+    }
+}
+
+/* Para telas menores que 576px (Exemplo de breakpoint para smartphones) */
+@media (max-width: 576px) {
+    header {
+        padding: 1rem 0;
+    }
+
+    nav {
+        padding: 0 5vw;
+    }
+
+    .logo-text {
+        font-size: clamp(1rem, 4vw, 1.4rem);
+    }
+
+    .logo-icon {
+        height: clamp(1.5rem, 5vw, 2rem);
+    }
+
+    .hero-content h1 {
+        font-size: clamp(1.8rem, 9vw, 4rem);
+    }
+
+    .hero-content p {
+        font-size: clamp(0.9rem, 4.5vw, 1.8rem);
+    }
+
+    .hero-image {
+        width: 90vw;
+        padding-bottom: 90%;
+    }
+    .hero-image .ceuba {
+        width: 80vw;
+        max-width: 400px;
+    }
+
+    .features-container {
+        padding: 5vw 3vw;
+        margin: 20px auto;
+    }
+
+    .titulo {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        top: -1.5rem;
+        left: 0.8rem;
+    }
+
+    .feature-card {
+        min-height: 160px;
+        padding: 1rem;
+    }
+    /* Ajustes finais para as imagens dos cards em mobile pequeno */
+    .feature-card.avalie .estrela {
+        width: clamp(7rem, 18vw, 9rem);
+    }
+
+    .feature-card.reclame .sino {
+        width: clamp(9rem, 23vw, 11rem);
+    }
+
+    .feature-card.sugira .lampada {
+        width: clamp(6rem, 16vw, 8rem);
+    }
+
+    .action-button {
+        font-size: clamp(0.7rem, 2.5vw, 1rem);
+        padding: 0.6rem 1.2rem;
+    }
+
+    .quick-link {
+        font-size: clamp(0.9rem, 3.5vw, 1.3rem);
+        padding: 0.8rem 1.2rem;
+    }
+}
