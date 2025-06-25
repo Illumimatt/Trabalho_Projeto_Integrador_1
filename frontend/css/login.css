@@ -261,6 +261,28 @@ nav.main-nav { /* Usando a classe do seu criarconta.html */
     height: 20px;
 }
 
+.button-estilo-card {
+    background: radial-gradient(circle at center, #2E1640 0%, #BCA5D0 100%);
+    color: white;
+    border-radius: 15px;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 70px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button-estilo-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+
 /* Telas grandes (>= 1366px) - tamanho original */
 .overlapping-image {
     height: 600px;

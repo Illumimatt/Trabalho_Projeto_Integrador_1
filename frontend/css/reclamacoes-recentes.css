@@ -100,7 +100,6 @@ main {
 
 /* Alterado de .container-sugestoes a */
 .container-reclamacoes a {
-    color: #6D28D9;
     text-decoration: none;
     display: block;
     margin-top: 5px;
@@ -159,6 +158,15 @@ main {
     font-size: 1rem;
     color: #271037;
     line-height: 1.6;
+}
+
+.btn-voltar {
+    font-family: 'Syne', sans-serif;
+    color: #333333;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer; /* Opcional: reforça visual de clicável */
 }
 
 /* Responsividade */

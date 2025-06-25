@@ -240,9 +240,12 @@ main {
 }
 
 .btn-sugestoes {
-    color: #6D28D9;
-    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    color: #333333;
+    text-decoration: underline;
     font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer; /* Opcional: reforça visual de clicável */
 }
 
 .btn-sugestoes:hover {

@@ -15,10 +15,10 @@
   <header>
     <nav>
       <div class="logo">
-        <a href="../index.html">
-          <img src="../css/components/img/icone-logo.png" alt="Logo Fala, CEUB!" />
-          <span>Fala, CEUB!</span>
-        </a>
+          <a href="../index.html">
+              <img src="../css/components/img/icone-logo.png" alt="Logo Fala, CEUB!" />
+              <span class="logo-text">Fala, CEÜB!</span>
+          </a>
       </div>
       <div class="menu">
         <ul>
@@ -41,16 +41,22 @@
       const usuario = JSON.parse(localStorage.getItem('usuario') || 'null');
       const authButtons = document.querySelector('.auth-buttons');
 
-      if (usuario) {
-        authButtons.innerHTML = `
-          <span class="usuario-logado">Olá, ${usuario.nome}</span>
-          <button id="logout-btn" class="btn-sair">Sair</button>
-        `;
-        document.getElementById('logout-btn').addEventListener('click', () => {
-          localStorage.removeItem('usuario');
-          window.location.href = 'entrar.html';
-        });
-      }
+
+  if (usuario) {
+    authButtons.innerHTML = `
+      <span class="usuario-logado">Olá, ${usuario.nome}</span>
+      <button id="logout-btn" class="btn-sair" aria-label="Sair">
+        <img 
+          src="../css/components/img/mingcute_exit-fill.svg" 
+          alt="Sair" 
+          class="icon-exit"
+        />
+      </button>
+    `;
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      localStorage.removeItem('usuario');
+      window.location.href = 'entrar.html';
+    });  }
     });
   </script>
 

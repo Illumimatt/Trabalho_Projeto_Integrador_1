@@ -223,24 +223,23 @@ main {
 
 /* Alterado de .btn-sugestoes */
 .btn-reclamacoes {
-    color: #6D28D9;
-    text-decoration: none;
+    font-family: 'Syne', sans-serif;
+    color: #333333;
+    text-decoration: underline;
     font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer; /* Opcional: reforça visual de clicável */
     padding-right: 200px;
 }
 
-.btn-reclamacoes:hover {
-    text-decoration: underline;
-}
 
 .btn-reclamacoes-resolvidas {
-    color: #6D28D9;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.btn-reclamacoes-resolvidas:hover {
+    font-family: 'Syne', sans-serif;
+    color: #333333;
     text-decoration: underline;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer; /* Opcional: reforça visual de clicável */
 }
 
 /* --- Responsividade --- */

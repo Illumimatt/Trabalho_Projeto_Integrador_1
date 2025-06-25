@@ -11,6 +11,11 @@ body {
     min-height: 100vh;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove o espaço extra abaixo de imagens */
+}
   
   header {
     background: rgba(134, 110, 153, 0.07); /* 0.07 = 7% de opacidade */
@@ -19,68 +24,66 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   }
     
-  nav {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
-    padding: 0 40px;
-  }
+    padding: 0 4vw; /* Convertido de 40px para vw */
+}
     
-  .logo {
+.logo {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-  }
-  
-  .logo a {
-    display: flex;
-    align-items: center;  /* Alinha verticalmente */
-    text-decoration: none;
-  }
+}
 
-  .logo-text {
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-text {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700; /* Bold */
-    font-size: 27px;  /* Tamanho da imagem que você mostrou */
+    font-weight: 700;
+    font-size: clamp(1.2rem, 1.5vw + 1rem, 1.7rem); /* Convertido para clamp */
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  }
+}
 
-  .logo-icon {
-    height: 40px; /* Aumente aqui se quiser maior */
-    margin-right: 10px;
-  }
+.logo-icon {
+    height: clamp(2rem, 3vw, 2.5rem); /* Convertido para clamp */
+    margin-right: 0.5rem;
+}
 
-  .menu {
+.menu {
     flex: 2;
     display: flex;
     justify-content: center;
-  }
+}
 
-  
-  .menu ul {
+.menu ul {
     display: flex;
-    list-style: none; /* opcional: tira os marcadores */
+    list-style: none;
     padding: 0;
     margin: 0;
-    display: flex; /* deixa os itens numa linha só */
-    gap: 65px; /* espaço entre os itens */
-  }
+    gap: 2vw; /* Convertido de 65px para vw */
+}
   
-  .menu ul li {
-    margin: 0 15px;
-  }
-  
-  .menu ul li a {
+.menu ul li {
+    margin: 0 0.5rem;
+}
+
+.menu ul li a {
     font-family: 'Montserrat', sans-serif;
-    font-weight: 600; /* Semibold */
-    font-size: 21px;
+    font-weight: 600;
+    font-size: clamp(1rem, 1.2vw + 0.5rem, 1.3rem); /* Convertido para clamp */
     color: #FFFF;
     text-decoration: none;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
     align-items: center;
-    }
+}
 /* --- Layout da Página Principal --- */
 main {
     width: 100%;
@@ -262,6 +265,17 @@ main {
 .btn-melhores-avaliados:hover {
     text-decoration: underline;
 }
+
+.btn-reclamacoes {
+    font-family: 'Syne', sans-serif;
+    color: #333333;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer; /* Opcional: reforça visual de clicável */
+    margin-left: 44%;
+}
+
 
 /* --- Responsividade --- */
 @media (max-width: 768px) {
